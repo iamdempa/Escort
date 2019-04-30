@@ -366,7 +366,7 @@ and open the template in the editor.
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file1">
                                 <img id="blah1" src="http://placehold.it/500" alt="..." class="img-thumbnail">
-                                <input type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-1">
+                                <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-1"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold">This will be the main Thumbnail</small>
 
                                 <!--===============================-->
@@ -385,7 +385,7 @@ and open the template in the editor.
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file2">
                                 <img id="blah2" src="http://placehold.it/500" alt="..." class="img-thumbnail">
-                                <input type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-2">
+                                <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-2"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold">Thumbnail 2</small>
 
                                 <!--===============================-->
@@ -403,7 +403,7 @@ and open the template in the editor.
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file3">
                                 <img id="blah3" src="http://placehold.it/500" alt="..." class="img-thumbnail">
-                                <input type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-3">
+                                <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-3"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold">Thumbnail 3</small>
 
                                 <!--===============================-->
@@ -421,7 +421,7 @@ and open the template in the editor.
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file4">
                                 <img id="blah4" src="http://placehold.it/500" alt="..." class="img-thumbnail">
-                                <input type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-4">
+                                <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-4"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold">Thumbnail 4</small>
 
                                 <!--===============================-->
@@ -670,14 +670,14 @@ and open the template in the editor.
                         $('#' + id).attr('src', e.target.result);
                         $('#' + buttonid).show();
                         $('#' + progressDivId).show();
-                        upload(fileid, imgno, progressBarId, msgId);
+                        upload(fileid, imgno, progressBarId, msgId, buttonid);
                     };
                     reader.readAsDataURL(element.files[0]);
                 }
             }
 
 
-            function upload(fileid, imgno, progressBarId, msgId) {
+            function upload(fileid, imgno, progressBarId, msgId, buttonid) {
                 $('#' + progressBarId).css('width', '0');
                 $('#' + msgId).text('');
                 var data = new FormData();
@@ -702,6 +702,14 @@ and open the template in the editor.
                                 percentComplete = parseInt(percentComplete * 100);
                                 $('#' + progressBarId).text(percentComplete + '%');
                                 $('#' + progressBarId).css('width', percentComplete + '%');
+                                
+                                var childId = $('#' + progressBarId).attr('id'); //myprogress1
+                                var parentId = childId.substring(2,11);   
+                                $("#" + buttonid).prop('value', 'Remove Photo');
+                                
+                                setTimeout(function () {
+                                    $('#' + parentId).css("display", "none");
+                                }, 2000);
                             }
                         }, false);
                         return xhr;
@@ -712,7 +720,9 @@ and open the template in the editor.
                         if (php_script_response === "" || php_script_response.length === 0) {
 //                            alert("nothing");
                             $('.' + msgId).text("Image Uploaded Successfully!");
-                            
+                            setTimeout(function () {
+                                $('.' + msgId).css("display", "none");
+                            }, 1500);
 
                         } else {
                             if (php_script_response === "error result") {
@@ -720,32 +730,32 @@ and open the template in the editor.
                                 $('.' + msgId).text("Unknown Error Occured! Try again later...");
                                 $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-//                                setTimeout(function () {
-//                                    location.reload();
-//                                }, 1500);
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
                             } else if (php_script_response === "error size") {
                                 //alert("Image size Exceeded, Upload an Image of size less than 1MB...");
                                 $('.' + msgId).text("Image size Exceeded, Upload an Image of size less than 1MB...");
                                 $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-//                                setTimeout(function () {
-//                                    location.reload();
-//                                }, 1500);
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
                             } else if (php_script_response === "error file") {
                                 //alert("File error! Try again later...");
                                 $('.' + msgId).text("File error! Try again later...");
                                 $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-//                                setTimeout(function () {
-//                                    location.reload();
-//                                }, 1500);
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
                             } else if (php_script_response === "error type") {
 //                                alert("Invalid file type. Upload only JPG/JPEG/PNG file types...");
                                 $('.' + msgId).text("Invalid file type. Upload only JPG/JPEG/PNG file types...");
 //                                window.location.reload(false);
-//                                setTimeout(function () {
-//                                    location.reload();
-//                                }, 1500);
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
                             } else if (php_script_response === "error name") {
                                 //alert("Invalid file name. Reanme before uplaoding...");
                                 $('.' + msgId).text("Invalid file name. Rename before uplaoding...");
@@ -758,15 +768,15 @@ and open the template in the editor.
                                 $('.' + msgId).text("Something...");
                                 $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-//                                setTimeout(function () {
-//                                    location.reload();
-//                                }, 1500);
+                                setTimeout(function () {
+                                    location.reload();
+                                }, 1500);
                             } else {
                                 $('.' + msgId).text("Image Uploaded Successfully!");
 //                                window.location.reload(false);
-//                                setTimeout(function () {
-//                                    location.reload();
-//                                }, 1500);
+                                setTimeout(function () {
+                                    $('.' + msgId).css("display", "none");
+                                }, 1500);
                             }
 
                         }

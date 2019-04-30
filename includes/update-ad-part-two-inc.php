@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) {
 
         //upload photos
     } else {
-        header("Location: ../post-ad-2.php?emoerror");
+        header("Location: ../post-ad-2.php?updatePartOne=success&emoerror");
         exit();
     }
 } else {
