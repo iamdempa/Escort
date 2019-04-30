@@ -26,7 +26,7 @@ if (isset($_SESSION['admin']) || !empty($_SESSION['admin'])) {
 
 
 if (isset($_FILES['file0']) && isset($_POST['imgno'])) {
-    echo 'hari - 1 |';
+//    echo 'hari - 1 |';
     $imageNO = $_POST['imgno'];
 
 //    echo 'mokada une';

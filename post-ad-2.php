@@ -13,16 +13,17 @@ if (isset($_SESSION['admin'])) {
     $userId = $_SESSION['userid'];
 }
 
-if (!empty($_GET['editAdId']) || isset($_GET['editAdId']) == "yes" || isset($_GET['editAdId'])) {  //if someone clicked ad edit button
+if (!empty($_GET['updatePartOne']) || isset($_GET['updatePartOne']) == "yes" || isset($_GET['updatePartOne'])) {  //if someone clicked ad edit button on the user page
     $adId = $_SESSION['editAdId'];
-    echo 'yes'; 
+    echo 'ONE';
 } else if (isset($_GET['updatePartOneByAdmin']) || !empty($_GET['updatePartOneByAdmin'])) {
     $adId = $_SESSION['editAdId'];
-    echo ' yes';
+    echo 'TWO';
 } else {
 //ID's
+    $adId = $_SESSION['editAdId'];
     $adId = $_SESSION['adid'];
-    echo 'yes';
+    echo 'THREE';
 }
 ?>
 
@@ -79,7 +80,7 @@ and open the template in the editor.
 
         <script type="text/javascript">
             window.setTimeout(function () {
-                $(".mekata").fadeTo(1000, 0).slideUp(1000, function () {
+                $(".mekata").fadeTo(2500, 0).slideUp(1000, function () {
                     $(this).hide();
                 });
             }, 1000);
@@ -593,11 +594,11 @@ and open the template in the editor.
                 $("#image-remove-btn-1").prop('value', 'Photo deleting...');
                 $('#blah1').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
-                var adId =<?php echo $adId ?>;                
-                deletePhoto('image-remove-btn-1','blah1', userId, adId);
-                setTimeout(function(){
+                var adId =<?php echo $adId ?>;
+                deletePhoto('image-remove-btn-1', 'blah1', userId, adId);
+                setTimeout(function () {
                     $("#image-remove-btn-1").hide();
-                },2500);
+                }, 2500);
             });
 
             $("#image-remove-btn-2").click(function () {
@@ -605,10 +606,10 @@ and open the template in the editor.
                 $('#blah2').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-2','blah2', userId, adId);
-                setTimeout(function(){
+                deletePhoto('image-remove-btn-2', 'blah2', userId, adId);
+                setTimeout(function () {
                     $("#image-remove-btn-2").hide();
-                },2500);
+                }, 2500);
             });
 
             $("#image-remove-btn-3").click(function () {
@@ -616,10 +617,10 @@ and open the template in the editor.
                 $('#blah3').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-3','blah3', userId, adId);
-                setTimeout(function(){
+                deletePhoto('image-remove-btn-3', 'blah3', userId, adId);
+                setTimeout(function () {
                     $("#image-remove-btn-3").hide();
-                },2500);
+                }, 2500);
             });
 
             $("#image-remove-btn-4").click(function () {
@@ -627,15 +628,15 @@ and open the template in the editor.
                 $('#blah4').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-4','blah4', userId, adId);
-                setTimeout(function(){
+                deletePhoto('image-remove-btn-4', 'blah4', userId, adId);
+                setTimeout(function () {
                     $("#image-remove-btn-4").hide();
-                },2500);
+                }, 2500);
             });
 
-            function deletePhoto(buttonId,imgeName, userid, adId) {
+            function deletePhoto(buttonId, imgeName, userid, adId) {
                 $(document).ready(function (event) {
-                    
+
                     $.ajax({
                         url: 'includes/remove-ad-image-inc-2.php',
                         dataType: 'text', // what to expect back from the PHP script, if anything                        
@@ -650,7 +651,7 @@ and open the template in the editor.
 //                            $('#'+buttonId).hide();                            
 //                        }
 
-                    });                    
+                    });
                 });
             }
         </script>
@@ -685,7 +686,7 @@ and open the template in the editor.
                     data.append('imgno', imgno);
                 });
                 $.ajax({
-                    url: 'includes/upload-ad-image-inc.php',
+                    url: 'includes/upload-ad-image-inc-2.php',
                     dataType: 'text', // what to expect back from the PHP script, if anything
                     cache: false,
                     contentType: false,
@@ -706,60 +707,66 @@ and open the template in the editor.
                         return xhr;
                     },
                     success: function (php_script_response) {
-                        alert(php_script_response); // display response from the PHP script, if any
-                        
+//                        alert(php_script_response); // display response from the PHP script, if any
+
                         if (php_script_response === "" || php_script_response.length === 0) {
 //                            alert("nothing");
                             $('.' + msgId).text("Image Uploaded Successfully!");
+                            
 
                         } else {
                             if (php_script_response === "error result") {
                                 //alert("Unknown Error Occured! Try again later...");
                                 $('.' + msgId).text("Unknown Error Occured! Try again later...");
+                                $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1500);
+//                                setTimeout(function () {
+//                                    location.reload();
+//                                }, 1500);
                             } else if (php_script_response === "error size") {
                                 //alert("Image size Exceeded, Upload an Image of size less than 1MB...");
                                 $('.' + msgId).text("Image size Exceeded, Upload an Image of size less than 1MB...");
+                                $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1500);
+//                                setTimeout(function () {
+//                                    location.reload();
+//                                }, 1500);
                             } else if (php_script_response === "error file") {
                                 //alert("File error! Try again later...");
                                 $('.' + msgId).text("File error! Try again later...");
+                                $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1500);
+//                                setTimeout(function () {
+//                                    location.reload();
+//                                }, 1500);
                             } else if (php_script_response === "error type") {
 //                                alert("Invalid file type. Upload only JPG/JPEG/PNG file types...");
                                 $('.' + msgId).text("Invalid file type. Upload only JPG/JPEG/PNG file types...");
 //                                window.location.reload(false);
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1500);
+//                                setTimeout(function () {
+//                                    location.reload();
+//                                }, 1500);
                             } else if (php_script_response === "error name") {
                                 //alert("Invalid file name. Reanme before uplaoding...");
-                                $('.' + msgId).text("Invalid file name. Reanme before uplaoding...");
+                                $('.' + msgId).text("Invalid file name. Rename before uplaoding...");
+                                $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
                                 setTimeout(function () {
                                     location.reload();
                                 }, 1500);
                             } else if (php_script_response === "nama thiyanawa") {
                                 $('.' + msgId).text("Something...");
+                                $('.' + msgId).css("color", "red");
 //                                window.location.reload(false);
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1500);
+//                                setTimeout(function () {
+//                                    location.reload();
+//                                }, 1500);
                             } else {
                                 $('.' + msgId).text("Image Uploaded Successfully!");
 //                                window.location.reload(false);
-                                setTimeout(function () {
-                                    location.reload();
-                                }, 1500);
+//                                setTimeout(function () {
+//                                    location.reload();
+//                                }, 1500);
                             }
 
                         }
