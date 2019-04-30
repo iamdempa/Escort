@@ -53,6 +53,7 @@ and open the template in the editor.
     include_once './includes/dbConnection.php';
 
     if (!empty($_GET['postNewAd'])) {//if new ad
+        
         unset($_SESSION['editAdId']);
 
         if (!empty($_GET['title'])) { //if title is empty
@@ -69,6 +70,9 @@ and open the template in the editor.
     }
 
 
+    
+
+        
 
 
 
@@ -84,6 +88,9 @@ and open the template in the editor.
             <li class = 'breadcrumb-item active' aria-current = 'page'>Edit ad</li>
             </ol>
             </nav>";
+        
+        
+        
     } else {
         if (isset($_GET['updateByAdmin']) || !empty($_GET['updateByAdmin'])) { //if admin clicked update button
             echo "<nav aria-label = 'breadcrumb'>
@@ -110,12 +117,12 @@ and open the template in the editor.
     <form action="includes/update-ad-part-one-inc.php" method="POST"> <!--start of Form-->       
 
         <?php
-        if (empty($editAdId) && !empty($_GET['postNewAd'])) { //creates a new ad/when edit button NOT clicked                                                               
+        if (empty($editAdId) && !empty($_GET['postNewAd'])) { //creates a new ad/when edit button NOT clicked                
             echo "<!-- Sign up card -->
                         <div class='card person-card'>
                             <div class='card-body'>
                                 <!-- Sex image -->
-                                <!--<img id='img_sex' class='person-img' src='https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg'>-->
+                                <img id='img_sex' class='person-img' src='https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg'>
                                 <img id='img_sex' class='person-img' src='includes/Advertisement.png'>
                                 <h2 id='who_message' class='card-title'>Post your Advertisement</h2>
                                 <br>
@@ -260,11 +267,7 @@ and open the template in the editor.
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                             </div>
                         </div>";
-        } else {
-
-
-
-
+        } else { //someone clicked edit button
 
 
             $_SESSION['editAdId'] = $_GET['editAdId'];
@@ -296,7 +299,7 @@ and open the template in the editor.
                     <div class="card person-card">
                         <div class="card-body">
                             <!-- Sex image -->
-                            <!--<img id="img_sex" class="person-img" src="https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg">-->
+                            <img id="img_sex" class="person-img" src="https://visualpharm.com/assets/217/Life%20Cycle-595b40b75ba036ed117d9ef0.svg">
                             <img id='img_sex' class='person-img' src='includes/Advertisement.png'>
                             <h2 id="who_message" class="card-title">Edit your Advertisement</h2>
                             <br>
@@ -447,7 +450,7 @@ and open the template in the editor.
 
 
                         <?php
-                        if (empty($editAdId) && empty($userId)) {
+                        if (empty($editAdId) && empty($userId)) { //if user clicked edit button
                             echo "<div class='row'>
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                                 <div class='col-md-4 col-sm-4 col-4'>
@@ -458,7 +461,7 @@ and open the template in the editor.
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                             </div>
                         </div>";
-                        } else {
+                        } else { //if a new ad
                             echo "<div class='row'>
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                                 <div class='col-md-4 col-sm-4 col-4'>

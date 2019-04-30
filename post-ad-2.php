@@ -13,13 +13,16 @@ if (isset($_SESSION['admin'])) {
     $userId = $_SESSION['userid'];
 }
 
-if (!empty($_GET['updatePartOne']) || isset($_GET['updatePartOne']) == "yes" || isset($_GET['updatePartOne'])) {  //if someone clicked ad edit button
+if (!empty($_GET['editAdId']) || isset($_GET['editAdId']) == "yes" || isset($_GET['editAdId'])) {  //if someone clicked ad edit button
     $adId = $_SESSION['editAdId'];
+    echo 'yes'; 
 } else if (isset($_GET['updatePartOneByAdmin']) || !empty($_GET['updatePartOneByAdmin'])) {
     $adId = $_SESSION['editAdId'];
+    echo ' yes';
 } else {
 //ID's
     $adId = $_SESSION['adid'];
+    echo 'yes';
 }
 ?>
 
@@ -363,7 +366,7 @@ and open the template in the editor.
                             <label for="file1">
                                 <img id="blah1" src="http://placehold.it/500" alt="..." class="img-thumbnail">
                                 <input type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-1">
-                                <small id="textCount" class="form-text text-center bold">Thumbnail 1</small>
+                                <small id="textCount" class="form-text text-center bold">This will be the main Thumbnail</small>
 
                                 <!--===============================-->
                                 <div class="form-group">
