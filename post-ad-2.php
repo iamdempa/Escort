@@ -707,6 +707,7 @@ and open the template in the editor.
                     },
                     success: function (php_script_response) {
                         alert(php_script_response); // display response from the PHP script, if any
+                        
                         if (php_script_response === "" || php_script_response.length === 0) {
 //                            alert("nothing");
                             $('.' + msgId).text("Image Uploaded Successfully!");
