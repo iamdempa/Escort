@@ -37,9 +37,12 @@ if (session_status() == PHP_SESSION_NONE) {
                 <li class="nav-item search-bar">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search Ads" aria-label="Search">                            
                 </li>
+                
+                <form action="includes/search-ads-inc.php">
                 <li class="nav-item search-button">
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
                 </li>
+                </form>
 
             </ul>
             <form class="form-inline mt-2 mt-md-0">
