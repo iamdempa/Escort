@@ -92,14 +92,14 @@ and open the template in the editor.
             <li class = 'breadcrumb-item active' aria-current = 'page'>Post an Add</li>
             </ol>
             </nav>";
-        } else {
+        } else { 
             echo "<nav aria-label = 'breadcrumb'>
             <ol class = 'breadcrumb'>
             <li class = 'breadcrumb-item'><a href = 'user-profile.php'>Profile</a></li>
             <li class = 'breadcrumb-item active' aria-current = 'page'>Post an Add</li>
             </ol>
             </nav>";
-            echo 'ok';
+//            echo 'ok';
         }
     }
     ?>
