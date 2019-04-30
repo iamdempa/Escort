@@ -53,11 +53,8 @@ and open the template in the editor.
     include_once './includes/dbConnection.php';
 
     if (!empty($_GET['postNewAd'])) {//if new ad
-        
         unset($_SESSION['editAdId']);
-
-        if (!empty($_GET['title'])) { //if title is empty
-        }
+        
 //            echo 'new ad';
     } else { //if clicked on edit button
         if (isset($_SESSION['admin']) || !empty($_SESSION['admin'])) {
@@ -68,16 +65,18 @@ and open the template in the editor.
             $userId = $_GET['userId'];
         }
     }
-
-
+    ?>
     
+    <script type="text/javascript">
+        window.setTimeout(function () {
+            $(".mekata").fadeTo(2500, 0).slideUp(1000, function () {
+                $(this).hide();
+            });
+        }, 1000);
+    </script>
 
-        
 
-
-
-
-
+    <?php
 //        echo $editAdId . "-" . $userId;
 
 
@@ -88,9 +87,31 @@ and open the template in the editor.
             <li class = 'breadcrumb-item active' aria-current = 'page'>Edit ad</li>
             </ol>
             </nav>";
-        
-        
-        
+
+        if (isset($_GET['title']) == "empty" || !empty($_GET['title'])) {
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Title is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+        } else if (isset($_GET['description']) == "empty" || !empty($_GET['description'])) {
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Description is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+        } else if (isset($_GET['service']) == "empty" || !empty($_GET['service'])) {
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Service is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+        } else {
+            
+        }
     } else {
         if (isset($_GET['updateByAdmin']) || !empty($_GET['updateByAdmin'])) { //if admin clicked update button
             echo "<nav aria-label = 'breadcrumb'>
@@ -99,7 +120,32 @@ and open the template in the editor.
             <li class = 'breadcrumb-item active' aria-current = 'page'>Post an Add</li>
             </ol>
             </nav>";
-        } else { 
+
+            if (isset($_GET['title']) == "empty" || !empty($_GET['title'])) {
+                echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Title is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            } else if (isset($_GET['description']) == "empty" || !empty($_GET['description'])) {
+                echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Description is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            } else if (isset($_GET['service']) == "empty" || !empty($_GET['service'])) {
+                echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Service is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            } else {
+                
+            }
+        } else {
             echo "<nav aria-label = 'breadcrumb'>
             <ol class = 'breadcrumb'>
             <li class = 'breadcrumb-item'><a href = 'user-profile.php'>Profile</a></li>
@@ -107,6 +153,30 @@ and open the template in the editor.
             </ol>
             </nav>";
 //            echo 'ok';
+            if (isset($_GET['title']) == "empty" || !empty($_GET['title'])) {
+                echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Title is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            } else if (isset($_GET['description']) == "empty" || !empty($_GET['description'])) {
+                echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Description is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            } else if (isset($_GET['service']) == "empty" || !empty($_GET['service'])) {
+                echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
+                <strong>Service is Empty!</strong>
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+            } else {
+                
+            }
         }
     }
     ?>
@@ -268,8 +338,6 @@ and open the template in the editor.
                             </div>
                         </div>";
         } else { //someone clicked edit button
-
-
             $_SESSION['editAdId'] = $_GET['editAdId'];
             $_SESSION['userId'] = $_GET['userId'];
             ?>
