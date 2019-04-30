@@ -53,20 +53,20 @@ if (isset($_FILES['file0']) && isset($_POST['imgno'])) {
     $num = mysqli_num_rows($resultImage);
     $flag = True;
     if (mysqli_num_rows($resultImage) > 0) {
-        echo 'hari - 2 |';
+//        echo 'hari - 2 |';
         while (($row = mysqli_fetch_assoc($resultImage)) && $flag) { //runs 4 times
             $adImageId = $row['adimageid'];
-            echo 'hari - 3 |';
+//            echo 'hari - 3 |';
 
 
             if (($row['adimagestatus'] == 1) && ($row['adimageno'] == $imageNO)) { //if image is not set
-                echo 'hari- 4 |';
+//                echo 'hari- 4 |';
 
                 uploadPhotos($conn, $fileName, $fileError, $fileSize, $fileTempName, $adImageId, $adId, $userId);
                 $flag = false;
                 exit();
             } else { //image is already set
-                echo 'Image Uploaded already |';
+//                echo 'Image Uploaded already |';
             }
 
 //        echo $adImageId;
