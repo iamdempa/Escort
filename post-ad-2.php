@@ -86,6 +86,8 @@ and open the template in the editor.
 
 
 
+
+
         <!-- Sign up form -->
         <div></div>
 
@@ -284,43 +286,45 @@ and open the template in the editor.
 
 
         <script type="text/javascript">
-
             $(document).ready(function () {
                 var check = localStorage.getItem("email");
-                if (check.length === 0) { //no data set
-                    alert("Data not set");
-
-                    var email = $('#email').val();
-                    var tel = $('#tel').val();
-                    var teloffice = $('#teloffice').val();
-                    var street = $('#street').val();
-                    var city = $('#city').val();
-                    var state = $('#state').val();
-
-
-                    localStorage.setItem("email", email);
-                    localStorage.setItem("tel", tel);
-                    localStorage.setItem("teloffice", teloffice);
-                    localStorage.setItem("street", street);
-                    localStorage.setItem("city", city);
-                    localStorage.setItem("state", state);
-
-                    $('#email').val(localStorage.getItem("email"));
-                    $('#tel').val(localStorage.getItem("tel"));
-                    $('#teloffice').val(localStorage.getItem("teloffice"));
-                    $('#street').val(localStorage.getItem("street"));
-                    $('#city').val(localStorage.getItem("city"));
-                    $('#state').val(localStorage.getItem("state"));
-
+                if (check === null) {
+//                    alert("Null");
                 } else {
-                    $('#email').val(localStorage.getItem("email"));
-                    $('#tel').val(localStorage.getItem("tel"));
-                    $('#teloffice').val(localStorage.getItem("teloffice"));
-                    $('#street').val(localStorage.getItem("street"));
-                    $('#city').val(localStorage.getItem("city"));
-                    $('#state').val(localStorage.getItem("state"));
-                }
+                    if (check.length === 0) { //no data set
+                        alert("Data not set");
 
+                        var email = $('#email').val();
+                        var tel = $('#tel').val();
+                        var teloffice = $('#teloffice').val();
+                        var street = $('#street').val();
+                        var city = $('#city').val();
+                        var state = $('#state').val();
+
+
+                        localStorage.setItem("email", email);
+                        localStorage.setItem("tel", tel);
+                        localStorage.setItem("teloffice", teloffice);
+                        localStorage.setItem("street", street);
+                        localStorage.setItem("city", city);
+                        localStorage.setItem("state", state);
+
+                        $('#email').val(localStorage.getItem("email"));
+                        $('#tel').val(localStorage.getItem("tel"));
+                        $('#teloffice').val(localStorage.getItem("teloffice"));
+                        $('#street').val(localStorage.getItem("street"));
+                        $('#city').val(localStorage.getItem("city"));
+                        $('#state').val(localStorage.getItem("state"));
+
+                    } else {
+                        $('#email').val(localStorage.getItem("email"));
+                        $('#tel').val(localStorage.getItem("tel"));
+                        $('#teloffice').val(localStorage.getItem("teloffice"));
+                        $('#street').val(localStorage.getItem("street"));
+                        $('#city').val(localStorage.getItem("city"));
+                        $('#state').val(localStorage.getItem("state"));
+                    }
+                }
 
             });
         </script>
@@ -558,13 +562,16 @@ and open the template in the editor.
 
         <script type="text/javascript">
             $(document).ready(function () {
+//                alert("Hi");
                 var images = ["blah1", "blah2", "blah3", "blah4"];
                 var buttons = ["image-remove-btn-1", "image-remove-btn-2", "image-remove-btn-3", "image-remove-btn-4"];
+                var i;
                 for (i = 0; i < images.length; i++) {
                     var elem = $('#' + images[i]);
                     var btnElem = $('#' + buttons[i]);
                     if (elem.attr('src') !== "http://placehold.it/500") {
                         btnElem.show();
+//                        alert("show remove buttons");
                     } else {
 //                        alert("show remove buttons");
                     }
@@ -573,44 +580,61 @@ and open the template in the editor.
         </script>
 
         <script type="text/javascript">
+
             $('#image-remove-btn-1').hide();
             $('#image-remove-btn-2').hide();
             $('#image-remove-btn-3').hide();
             $('#image-remove-btn-4').hide();
-            $("#image-remove-btn-1").click(function (event) {
 
+            $("#image-remove-btn-1").click(function (event) {
+                $("#image-remove-btn-1").prop('value', 'Photo deleting...');
                 $('#blah1').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
-                var adId =<?php echo $adId ?>;
-                $(this).hide();
-                deletePhoto('blah1', userId, adId);
+                var adId =<?php echo $adId ?>;                
+                deletePhoto('image-remove-btn-1','blah1', userId, adId);
+                setTimeout(function(){
+                    $("#image-remove-btn-1").hide();
+                },2500);
             });
+
             $("#image-remove-btn-2").click(function () {
+                $("#image-remove-btn-2").prop('value', 'Photo deleting...');
                 $('#blah2').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('blah2', userId, adId);
-                $(this).hide();
+                deletePhoto('image-remove-btn-2','blah2', userId, adId);
+                setTimeout(function(){
+                    $("#image-remove-btn-2").hide();
+                },2500);
             });
+
             $("#image-remove-btn-3").click(function () {
+                $("#image-remove-btn-3").prop('value', 'Photo deleting...');
                 $('#blah3').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('blah3', userId, adId);
-                $(this).hide();
+                deletePhoto('image-remove-btn-3','blah3', userId, adId);
+                setTimeout(function(){
+                    $("#image-remove-btn-3").hide();
+                },2500);
             });
+
             $("#image-remove-btn-4").click(function () {
+                $("#image-remove-btn-4").prop('value', 'Photo deleting...');
                 $('#blah4').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('blah4', userId, adId);
-                $(this).hide();
+                deletePhoto('image-remove-btn-4','blah4', userId, adId);
+                setTimeout(function(){
+                    $("#image-remove-btn-4").hide();
+                },2500);
             });
-            function deletePhoto(imgeName, userid, adId) {
-                $(document).ready(function () {
 
+            function deletePhoto(buttonId,imgeName, userid, adId) {
+                $(document).ready(function (event) {
+                    
                     $.ajax({
-                        url: 'includes/remove-ad-image-inc.php',
+                        url: 'includes/remove-ad-image-inc-2.php',
                         dataType: 'text', // what to expect back from the PHP script, if anything                        
                         data: {
                             userId: userid,
@@ -618,11 +642,12 @@ and open the template in the editor.
                             imgeName: imgeName
                         },
                         type: 'post',
-                        success: function (php_script_response) {
-//                            alert(php_script_response); // display response from the PHP script, if any
-                        }
+//                        success: function (php_script_response) {
+////                            alert(php_script_response);
+//                            $('#'+buttonId).hide();                            
+//                        }
 
-                    });
+                    });                    
                 });
             }
         </script>
@@ -778,6 +803,7 @@ and open the template in the editor.
         <!-- Bootstrap core JavaScript
         ==================================================                                                                                                                         -->
         <!-- Placed at the end of the document so the pages load faster -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script>window.jQuery || document.write('<script src="js/main/jquery-slim.min.js"><\/script>')</script>
         <script src="js/main/popper.min.js"></script>

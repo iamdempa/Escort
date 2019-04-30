@@ -3,6 +3,7 @@
 include_once './dbConnection.php';
 $adId = mysqli_real_escape_string($conn, filter_input(INPUT_POST, "adId"));
 $userId = mysqli_real_escape_string($conn, filter_input(INPUT_POST, "userId"));
+$imgeName = mysqli_real_escape_string($conn, filter_input(INPUT_POST, "imgeName"));
 
 
 
@@ -33,7 +34,6 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
             $fileActualExt = $fileExt[1];
 
             $file = "../uploads/ad/adImage-" . $ImageId . "-" . $adId . "-" . $userId . "." . $fileActualExt;
-
             array_map('unlink', glob($fileName));
         }
     }
