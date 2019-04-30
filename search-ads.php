@@ -25,9 +25,24 @@
         <div class="thetop"></div>
         <?php
         include_once './includes/header.php';
+        include './includes/dbConnection.php';
+        $keyword = mysqli_real_escape_string($conn, $_GET['keyword']);
         ?>
+        <br>
 
 
+        <?php
+        $sql = "SELECT * FROM ad WHERE adtitle LIKE '%$keyword%' OR addescription LIKE '%$keyword%'";
+
+        $result = mysqli_query($conn, $sql);
+        $queryResult = mysqli_num_rows($result);
+
+        if ($queryResult > 0) {
+            
+        } else {
+            echo 'No results matching your serach!';
+        }
+        ?>
 
 
         <?php
