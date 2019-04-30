@@ -1,0 +1,76 @@
+.card {
+    margin-top: 1em;
+}
+
+/* IMG displaying */
+.person-card {
+    margin-top: 5em;
+    padding-top: 5em;
+}
+.person-card .card-title{
+    text-align: center;
+}
+.person-card .person-img{
+    width: 10em;
+    position: absolute;
+    top: -5em;
+    left: 50%;
+    margin-left: -5em;
+    border-radius: 100%;
+    overflow: hidden;
+    background-color: white;
+}
+input#title{
+    border: 2px solid #007BB8; 
+    text-align: center;
+    font-size: 18px;    
+}
+input#title:focus{
+    font-weight: bolder;
+}
+.ad-image{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+@media(max-width:767px){
+    .ad-image{
+        padding: 5px !important;        
+    }
+}
+@media (max-width:1199px) and (min-width:992px){
+    .ad-image{
+        padding: 3px !important;
+        /*border: 1px solid red;*/
+    }
+}
+@media(max-width:767px){
+    .ad-image label img{
+        /*        border: 10px solid red;*/
+        width: 90% !important;       
+    }
+}
+.image-uplod{
+    display: none;
+}
+.img-thumbnail{
+    width: 200px !important;
+    height: 200px !important;
+    background: transparent no-repeat center;
+    background-size: cover !important;
+}
+img{
+    object-fit: cover;
+}
+
+.ad-image img:hover{
+    cursor: pointer;
+}
+
+.ad-tips{
+    margin-top: 72px;
+}
+@media(max-width:768px){
+    .ad-tips{
+        margin-top: 0px;
+    }
+}
