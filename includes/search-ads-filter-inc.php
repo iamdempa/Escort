@@ -3,9 +3,7 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-if (isset($_SESSION['username'])) {
-    
-} else {
+if (!isset($_SESSION['username'])) {
     header("Location: ../index.php");
 }
 
@@ -16,7 +14,9 @@ $country = mysqli_real_escape_string($conn, $_POST['country']);
 $keyword = mysqli_real_escape_string($conn, $_POST['keyword']);
 
 if (isset($_POST['submit'])) {
-    
-}else{
+
+    header("Location: ../search-ads.php?keyword=$keyword&service=$service&country=$country");
+    exit();
+} else {
     echo 'error';
 }
