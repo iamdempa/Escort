@@ -31,21 +31,22 @@
         <br>
 
         <div class="container">
-            <div class="row">
+            <div class="row text-center">
                 <div class="col-12 col-md-12">
 
                     <nav class="navbar navbar-expand-lg navbar-expand navbar-light  filterbar">
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <form>
+                            <form action="includes/search-ads-filter-inc.php" method="POST">
                                 <ul class="navbar-nav mr-auto">
 
-                                    <li class="nav-item px-6">                                    
+                                    <li class="nav-item px-5">                                    
 
                                         <div class="form-group row">
                                             <label for="country" class="col-form-label"><i class='fa fa-globe'></i> Search by Country:</label>
                                             <div class="col-sm-10">
                                                 <select id="country" name="country" class="form-control">
+                                                    <option value="all">All</option>
                                                     <option value="1">Sri Lanka</option>
                                                     <option value="2">India</option>
                                                     <option value="3">Thailand</option>
@@ -67,19 +68,18 @@
                                     <li class="nav-item px-6">                                    
 
                                         <div class="form-group row">
-                                            <label for="country" class="col-form-label"><i class='fa fa-tasks'></i> Search by Service:</label>
+                                            <label for="service" class="col-form-label"><i class='fa fa-tasks'></i> Search by Service:</label>
                                             <div class="col-sm-10">
-                                                <select id="country" name="country" class="form-control">
-                                                    <option value="1">Sri Lanka</option>
-                                                    <option value="2">India</option>
-                                                    <option value="3">Thailand</option>
-                                                    <option value="4">Taiwan</option>
-                                                    <option value="5">Indonesia</option>
-                                                    <option value="6">Philippines</option>
-                                                    <option value="7">Malaysia</option>
-                                                    <option value="8">Japan</option>
-                                                    <option value="9">Australia</option>
-                                                    <option value="10">Vietnam</option>
+                                                <select id="service" name="service" class="form-control">
+                                                    <option value="all">All</option>
+                                                    <option value="1">Hotel</option>
+                                                    <option value="2">Restauant</option>
+                                                    <option value="3">Annex</option>
+                                                    <option value="4">Spa</option>
+                                                    <option value="5">Guide</option>
+                                                    <option value="6">Tour</option>
+                                                    <option value="7">Beach Boy</option>
+                                                    <option value="8">Escort</option>                                                    
                                                 </select> 
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
         if ($queryResult > 0) {
             echo 'Results found: ' . $queryResult;
         } else {
-            echo 'No results matching your serach!';
+            echo 'No results matching your search!';
         }
         ?>
 
