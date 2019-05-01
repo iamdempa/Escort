@@ -594,51 +594,61 @@ and open the template in the editor.
             $('#image-remove-btn-4').hide();
 
             $("#image-remove-btn-1").click(function (event) {
-                $("#image-remove-btn-1").prop('value', 'Photo deleting...');
+                $("#image-remove-btn-1").html("<i class='fa fa-trash'></i> Photo deleting...");
                 $('#blah1').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-1', 'blah1', userId, adId);
+                deletePhoto('blah1', userId, adId);
                 setTimeout(function () {
                     $("#image-remove-btn-1").hide();
+                    $('#blah1').prop('disabled', false);
+                    $('#file1').prop('disabled', false);
                 }, 2500);
             });
 
             $("#image-remove-btn-2").click(function () {
-                $("#image-remove-btn-2").prop('value', 'Photo deleting...');
+                $("#image-remove-btn-2").html("<i class='fa fa-trash'></i> Photo deleting...");
+
                 $('#blah2').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-2', 'blah2', userId, adId);
+                deletePhoto('blah2', userId, adId);
                 setTimeout(function () {
                     $("#image-remove-btn-2").hide();
+                    $('#blah2').prop('disabled', false);
+                    $('#file2').prop('disabled', false);
                 }, 2500);
             });
 
             $("#image-remove-btn-3").click(function () {
-                $("#image-remove-btn-3").prop('value', 'Photo deleting...');
+                $("#image-remove-btn-3").html("<i class='fa fa-trash'></i> Photo deleting...");
                 $('#blah3').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-3', 'blah3', userId, adId);
+                deletePhoto('blah3', userId, adId);
                 setTimeout(function () {
                     $("#image-remove-btn-3").hide();
+                    $('#blah3').prop('disabled', false);
+                    $('#file3').prop('disabled', false);
                 }, 2500);
             });
 
             $("#image-remove-btn-4").click(function () {
-                $("#image-remove-btn-4").prop('value', 'Photo deleting...');
+                $("#image-remove-btn-4").html("<i class='fa fa-trash'></i> Photo deleting...");
+
                 $('#blah4').attr('src', 'http://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
-                deletePhoto('image-remove-btn-4', 'blah4', userId, adId);
+                deletePhoto('blah4', userId, adId);
                 setTimeout(function () {
                     $("#image-remove-btn-4").hide();
+                    $('#blah4').prop('disabled', false);
+                    $('#file4').prop('disabled', false);
                 }, 2500);
             });
 
-            function deletePhoto(buttonId, imgeName, userid, adId) {
-                $(document).ready(function (event) {
+            function deletePhoto(imgeName, userid, adId) {
+                $(document).ready(function () {
 
                     $.ajax({
                         url: 'includes/remove-ad-image-inc-2.php',
@@ -671,7 +681,12 @@ and open the template in the editor.
                     reader.onload = function (e) {
 
                         $('#' + id).attr('src', e.target.result);
+
+                        $('#' + id).prop('disabled', true);
+                        $('#' + fileid).prop('disabled', true);
+
                         $('#' + buttonid).show();
+                        $('#' + buttonid).html("<i class='fa fa-trash'></i> Remove Photo");
                         $('#' + progressDivId).show();
                         upload(fileid, imgno, progressBarId, msgId, buttonid);
                     };
