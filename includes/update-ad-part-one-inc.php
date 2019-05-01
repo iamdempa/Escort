@@ -4,6 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 if (isset($_POST['submit']) && empty($_SESSION['editAdId'])) { //new ad
+    echo 'NEW AD';
     include_once './dbConnection.php';
 
 
@@ -65,7 +66,7 @@ if (isset($_POST['submit']) && empty($_SESSION['editAdId'])) { //new ad
                     $sql = "INSERT INTO adimage(adid,adimageno,userid,adimagestatus) VALUES('$adId','$imageName','$userId',1);";
 //                    mysqli_query($conn, $sql); //put is in an if-else for error checking
                     if (mysqli_query($conn, $sql)) {
-                        header("Location: ../post-ad-2.php?partOneSuccess=yes");
+                        header("Location: ../post-ad-2.php?updatePartOne=yes&newAd=yes");
                     } else {
                         echo 'Error! adimage table didnt upload';
                     }
@@ -80,7 +81,7 @@ if (isset($_POST['submit']) && empty($_SESSION['editAdId'])) { //new ad
     }
 } else { //edit ad
 //    header("Location: ../user-profile.php");
-    echo 'edit Ad';
+    echo 'EDIT AD';
     include_once './dbConnection.php';
 
 
@@ -95,10 +96,11 @@ if (isset($_POST['submit']) && empty($_SESSION['editAdId'])) { //new ad
     $description = mysqli_real_escape_string($conn, $_POST['textarea']);
 
     if (isset($_SESSION['admin']) || !empty($_SESSION['admin'])) {
-        echo 'admin';
-        $userId = $_SESSION['userId'];
+        echo ' admin ';
+        $userId = $_SESSION['userId']; //value is by GET method
     } else {
-        $userId = $_SESSION['userid'];
+        echo ' user ';
+        $userId = $_SESSION['userid']; //value is by first time user logged in
     }
 
 
@@ -136,14 +138,14 @@ if (isset($_POST['submit']) && empty($_SESSION['editAdId'])) { //new ad
     } else {
         mysqli_stmt_bind_param($stmt, "ii", $adID, $userId);
         mysqli_stmt_execute($stmt);
-        echo $adID . "-" . $userId;
+        echo "Ad ID: ".$adID . " - User ID: " . $userId;
 
         if (isset($_SESSION['admin']) && empty($_SESSION['decline'])) {
             header("Location: ../post-ad-2.php?updatePartOneByAdmin=success");
         }else if(isset($_SESSION['admin']) && !empty($_SESSION['decline'])){
             header("Location: ../post-ad-2.php?updatePartOneByAdmin=success&decline=yes");
         } else {
-            header("Location: ../post-ad-2.php?updatePartOne=success");
+            header("Location: ../post-ad-2.php?updatePartOne=success&byUser=yes");
         }
     }
 }

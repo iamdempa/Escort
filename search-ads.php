@@ -32,13 +32,14 @@
 
 
         <?php
-        $sql = "SELECT * FROM ad WHERE adtitle LIKE '%$keyword%' OR addescription LIKE '%$keyword%'";
+//        $sql = "SELECT * FROM ad WHERE adtitle LIKE '%$keyword%' OR addescription LIKE '%$keyword%' OR adcontactemail LIKE '%$keyword%' AND adstatus='success'";
+        $sql = "SELECT * FROM ad WHERE adstatus='success' AND ( adtitle LIKE '%$keyword%' OR addescription LIKE '%$keyword%' OR adcontactemail LIKE '%$keyword%' );";
 
         $result = mysqli_query($conn, $sql);
         $queryResult = mysqli_num_rows($result);
 
         if ($queryResult > 0) {
-            
+            echo 'Results found: '.$queryResult;
         } else {
             echo 'No results matching your serach!';
         }

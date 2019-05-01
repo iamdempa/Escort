@@ -54,19 +54,19 @@ and open the template in the editor.
 
     if (!empty($_GET['postNewAd'])) {//if new ad
         unset($_SESSION['editAdId']);
-        
+
 //            echo 'new ad';
-    } else { //if clicked on edit button
+    } else { //if admin clicked on edit button
         if (isset($_SESSION['admin']) || !empty($_SESSION['admin'])) {
             $editAdId = $_GET['editAdId'];
             $userId = $_GET['userId'];
-        } else {
+        } else { //if a user clicked edit button
             $editAdId = $_GET['editAdId'];
             $userId = $_GET['userId'];
         }
     }
     ?>
-    
+
     <script type="text/javascript">
         window.setTimeout(function () {
             $(".mekata").fadeTo(2500, 0).slideUp(1000, function () {
@@ -187,7 +187,7 @@ and open the template in the editor.
     <form action="includes/update-ad-part-one-inc.php" method="POST"> <!--start of Form-->       
 
         <?php
-        if (empty($editAdId) && !empty($_GET['postNewAd'])) { //creates a new ad/when edit button NOT clicked                
+        if (empty($editAdId) && !empty($_GET['postNewAd'])) { //creates a new ad/when edit button NOT clicked          
             echo "<!-- Sign up card -->
                         <div class='card person-card'>
                             <div class='card-body'>
@@ -518,7 +518,7 @@ and open the template in the editor.
 
 
                         <?php
-                        if (empty($editAdId) && empty($userId)) { //if user clicked edit button
+                        if (empty($editAdId) && empty($userId)) { //if a new ad
                             echo "<div class='row'>
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                                 <div class='col-md-4 col-sm-4 col-4'>
@@ -529,7 +529,7 @@ and open the template in the editor.
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                             </div>
                         </div>";
-                        } else { //if a new ad
+                        } else { //if clicked edit
                             echo "<div class='row'>
                                 <div class='col-md-4 col-sm-4 col-4'></div>
                                 <div class='col-md-4 col-sm-4 col-4'>

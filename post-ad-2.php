@@ -13,19 +13,22 @@ if (isset($_SESSION['admin'])) {
     $userId = $_SESSION['userid'];
 }
 
-if (!empty($_GET['updatePartOne']) || isset($_GET['updatePartOne']) == "yes" || isset($_GET['updatePartOne'])) {  //if someone clicked ad edit button on the user page
-    $adId = $_SESSION['editAdId'];
+if (isset($_GET['updatePartOne']) == "yes" && isset($_GET['newAd']) == "yes") {  //if someone clicked ad edit button on the user page
+//    $adId = $_SESSION['editAdId'];
+    $adId = $_SESSION['adid'];
     echo 'ONE';
 } else if (isset($_GET['updatePartOneByAdmin']) || !empty($_GET['updatePartOneByAdmin'])) {
     $adId = $_SESSION['editAdId'];
     echo 'TWO';
-} else {
+} else if (isset($_GET['updatePartOne']) == "success" && isset($_GET['byUser']) == "yes") {
 //ID's
+
     $adId = $_SESSION['editAdId'];
-    $adId = $_SESSION['adid'];
     echo 'THREE';
 }
 ?>
+
+
 
 
 <!DOCTYPE html>
@@ -76,7 +79,7 @@ and open the template in the editor.
                 </button>
               </div>";
         }
-        ?>
+        ?>              
 
         <script type="text/javascript">
             window.setTimeout(function () {
@@ -702,11 +705,11 @@ and open the template in the editor.
                                 percentComplete = parseInt(percentComplete * 100);
                                 $('#' + progressBarId).text(percentComplete + '%');
                                 $('#' + progressBarId).css('width', percentComplete + '%');
-                                
+
                                 var childId = $('#' + progressBarId).attr('id'); //myprogress1
-                                var parentId = childId.substring(2,11);   
+                                var parentId = childId.substring(2, 11);
                                 $("#" + buttonid).prop('value', 'Remove Photo');
-                                
+
                                 setTimeout(function () {
                                     $('#' + parentId).css("display", "none");
                                 }, 2000);
