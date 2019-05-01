@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -16,7 +16,7 @@
         <link href="css/index/index-custom.css" rel="stylesheet">
         <!--<link href="css/main/font-awesome.min.css" rel="stylesheet">-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-        <link href="css/main/imagehover.css" rel="stylesheet">
+        <link href="css/searchpage/custom.css" rel="stylesheet">
 
 
 
@@ -30,6 +30,86 @@
         ?>
         <br>
 
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-12">
+
+                    <nav class="navbar navbar-expand-lg navbar-expand navbar-light  filterbar">
+
+                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                            <form>
+                                <ul class="navbar-nav mr-auto">
+
+                                    <li class="nav-item px-6">                                    
+
+                                        <div class="form-group row">
+                                            <label for="country" class="col-form-label"><i class='fa fa-globe'></i> Search by Country:</label>
+                                            <div class="col-sm-10">
+                                                <select id="country" name="country" class="form-control">
+                                                    <option value="1">Sri Lanka</option>
+                                                    <option value="2">India</option>
+                                                    <option value="3">Thailand</option>
+                                                    <option value="4">Taiwan</option>
+                                                    <option value="5">Indonesia</option>
+                                                    <option value="6">Philippines</option>
+                                                    <option value="7">Malaysia</option>
+                                                    <option value="8">Japan</option>
+                                                    <option value="9">Australia</option>
+                                                    <option value="10">Vietnam</option>
+                                                </select> 
+                                            </div>
+                                        </div>
+
+
+                                    </li>
+
+
+                                    <li class="nav-item px-6">                                    
+
+                                        <div class="form-group row">
+                                            <label for="country" class="col-form-label"><i class='fa fa-tasks'></i> Search by Service:</label>
+                                            <div class="col-sm-10">
+                                                <select id="country" name="country" class="form-control">
+                                                    <option value="1">Sri Lanka</option>
+                                                    <option value="2">India</option>
+                                                    <option value="3">Thailand</option>
+                                                    <option value="4">Taiwan</option>
+                                                    <option value="5">Indonesia</option>
+                                                    <option value="6">Philippines</option>
+                                                    <option value="7">Malaysia</option>
+                                                    <option value="8">Japan</option>
+                                                    <option value="9">Australia</option>
+                                                    <option value="10">Vietnam</option>
+                                                </select> 
+                                            </div>
+                                        </div>
+
+
+                                    </li>
+                                    
+                                    <li class="nav-item px-6">                                    
+                                        <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
+                                        <div class="col-sm-12">
+                                            <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">                            
+                                        </div>
+
+                                    </li>
+
+                                    <li class="nav-item px-6">                                    
+                                        <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
+                                        <div class="col-sm-10">
+                                            <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> Search Ads</button>
+                                        </div>
+
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                    </nav>
+
+                </div>
+            </div>
+        </div>
 
         <?php
 //        $sql = "SELECT * FROM ad WHERE adtitle LIKE '%$keyword%' OR addescription LIKE '%$keyword%' OR adcontactemail LIKE '%$keyword%' AND adstatus='success'";
@@ -39,12 +119,14 @@
         $queryResult = mysqli_num_rows($result);
 
         if ($queryResult > 0) {
-            echo 'Results found: '.$queryResult;
+            echo 'Results found: ' . $queryResult;
         } else {
             echo 'No results matching your serach!';
         }
         ?>
 
+        
+        <hr class="style3">
 
         <?php
         include_once './includes/footer.php';
