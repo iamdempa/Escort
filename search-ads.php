@@ -7,11 +7,15 @@
         <meta name="author" content="">
 
         <?php
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         include './includes/dbConnection.php';
 
         $service = $_GET['service'];
         $country = $_GET['country'];
         $keyword = $_GET['keyword'];
+        $userId = $_SESSION['userid'];
         if ($keyword == "") {
             echo "<title>Escort - Search Adz</title>";
         } else {
@@ -125,12 +129,164 @@
                 </div>
             </div>
         </div>
-        
-        
-        
-        
-        
-        
+
+        <!--Showing ads-->
+
+        <?php
+
+        function pagination($numOfResults, $resultPerPage) {
+            $service = $_GET['service'];
+            $country = $_GET['country'];
+            $keyword = $_GET['keyword'];
+            $userId = $_SESSION['userid'];
+            $numberOfPages = ceil($numOfResults / $resultPerPage);
+//            echo "Number of Results: " . $numOfResults . "</br>";
+//            echo "Results  per page: " . $resultPerPage . "</br>";
+            echo "<div class='container'><div class='row'><div class='col-7'></div><div class='col-5'><nav aria-label='Page navigation example text-center'>"
+            . "<ul class='pagination'>";
+            if ($numberOfPages != 1) {
+                for ($page = 1; $page <= $numberOfPages; $page++) {
+//                echo "<a href='user-profile.php?page=" . $page . "'>" . $page . "</a>";
+
+                    echo "<li class='page-item'>
+                      <li class='page-item'><a class='page-link' href='search-ads.php?keyword=$keyword&service=$service&country=$country&page=" . $page . "'>" . $page . "</a></li>";
+                }
+                echo "</ul></nav></div></div></div>";
+            }
+        }
+
+        //to show ads by the user
+        function showAdImages($userIdd, $conn) {
+
+            $resultPerPage = 1;
+
+            $sql2 = "SELECT * FROM ad WHERE userid=?";
+
+            $success = "pending";
+
+            $stmt2 = mysqli_stmt_init($conn);
+            mysqli_stmt_prepare($stmt2, $sql2);
+            mysqli_stmt_bind_param($stmt2, "i", $userIdd);
+            mysqli_stmt_execute($stmt2);
+
+            $result2 = mysqli_stmt_get_result($stmt2);
+            $numOfResults2 = mysqli_num_rows($result2);
+
+
+            if (!isset($_GET['page'])) {
+                $page = 1;
+            } else {
+                $page = $_GET['page'];
+            }
+
+            $thisPageFirstResult = ($page - 1) * $resultPerPage;
+
+            $sql = "SELECT * FROM ad WHERE userid=?  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+
+
+            $stmt = mysqli_stmt_init($conn);
+
+            if (!mysqli_stmt_prepare($stmt, $sql)) {
+                echo 'error';
+            } else {
+                $success = "pending";
+                mysqli_stmt_bind_param($stmt, "i", $userIdd);
+                mysqli_stmt_execute($stmt);
+
+                $result = mysqli_stmt_get_result($stmt);
+
+                $numOfResults = mysqli_num_rows($result);
+//                echo "Number of results Main: " . $numOfResults . "</br>";
+
+                echo "<div class='container table-responsive'>
+                    <div class='row'>
+                        <div class='col-3'>
+                        
+                        </div>
+                        <div class='col-9'>
+                        
+                        
+                    
+                <table class='table'>                    
+                    <tbody>";
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>";
+                    $adId = $row['adid'];
+                    $sql2 = "SELECT * FROM adimage WHERE adid='$adId' AND userid='$userIdd' LIMIT 1;";
+//                    echo $adId;
+
+                    $resultImage = mysqli_query($conn, $sql2);
+                    while ($rowImage = mysqli_fetch_assoc($resultImage)) { //runs only one time
+                        if ($rowImage['adimagestatus'] == 0) { //profile pic set
+                            $fileName = "uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "*";
+                            $fileInfo = glob($fileName);
+
+                            $fileExt = explode(".", $fileInfo[0]);
+                            $fileActualExt = $fileExt[1];
+
+                            echo "<td>";
+                            echo "<img src='uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "." . $fileActualExt . "?" . mt_rand() . "' style='width:50px;height:50px;' class='rounded float-left'>";
+                            echo"</td>";
+
+                            echo "<td class='text-left'>";
+                            echo "<a class='card-link' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
+                            echo $row['adtitle'];
+                            echo "</a>";
+                            echo"</td>";
+
+                            
+
+                            echo "</tr>";
+                        } else { //profile pic not set
+                            echo "<td>";
+                            echo "<img src='http://placehold.it/500' style='width:500px;height:500px;' class='rounded float-left'>";
+                            echo"</td>";
+
+                            echo "<td class='text-left'>";
+                            echo "<a class='card-link' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
+                            echo $row['adtitle'];
+                            echo "</a>";
+                            echo"</td>";
+
+                            echo "<td>";
+                            echo "<a style='margin-right:5px;' class='btn btn-warning btn-sm' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "' role='button'>Edit</a>";
+                            echo "<a class='btn btn-danger btn-sm delete' href='#' id='" . $adId . "' onclick='showDeleteConfirm(this)' role='button'>Delete</a>";
+                            echo"</td>";
+
+                            echo "<td>";
+                            if ($row['adstatus'] == "pending") {
+                                echo 'pending';
+                            } else {
+                                echo 'Approved';
+                            }
+                            echo"</td>";
+
+                            echo "</tr>";
+                        }
+                    }
+                }
+
+
+                echo "</tbody>
+                </table>
+                </div>
+                </div>";
+                
+                pagination($numOfResults2, $resultPerPage);
+                echo "</div>";
+            }
+        }
+
+        showAdImages($userId, $conn);
+        ?>
+
+        <!--End of Showing ads-->
+
+
+
+
+
 
 
         <script type="text/javascript">
