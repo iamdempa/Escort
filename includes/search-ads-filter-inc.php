@@ -13,6 +13,7 @@ $service = mysqli_real_escape_string($conn, $_POST['service']);
 $country = mysqli_real_escape_string($conn, $_POST['country']);
 $keyword = mysqli_real_escape_string($conn, $_POST['keyword']);
 
+echo $keyword;
 if (isset($_POST['submit'])) {
 
     header("Location: ../search-ads.php?keyword=$keyword&service=$service&country=$country");

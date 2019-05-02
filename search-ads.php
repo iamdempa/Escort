@@ -35,11 +35,12 @@
 
         <!-- Custom styles for this template -->
         <link href="css/index/carousel.css" rel="stylesheet">
-        <link href="css/index/index-custom.css" rel="stylesheet">
+        
         <!--<link href="css/main/font-awesome.min.css" rel="stylesheet">-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="css/searchpage/custom.css" rel="stylesheet">
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <link href="css/index/index-custom.css" rel="stylesheet">
 
 
 
@@ -136,6 +137,8 @@
             </div>
         </div>
 
+        <br><br><br>
+
         <!--Showing ads-->
         <?php
 
@@ -150,6 +153,7 @@
 
             $keyword = $_GET['keyword'];
             $userId = $_SESSION['userid'];
+            
             $numberOfPages = ceil($numOfResults / $resultPerPage);
 //            echo "Number of Results: " . $numOfResults . "</br>";
 //            echo "Results  per page: " . $resultPerPage . "</br>";
@@ -157,10 +161,8 @@
             . "<ul class='pagination'>";
             if ($numberOfPages != 1) {
                 for ($page = 1; $page <= $numberOfPages; $page++) {
-//                echo "<a href='user-profile.php?page=" . $page . "'>" . $page . "</a>";
 
-                    echo "<li class='page-item'>
-                      <li class='page-item'><a class='page-link' href='search-ads.php?keyword=$keyword&service=$service&country=$country&page=" . $page . "'>" . $page . "</a></li>";
+                    echo "<li class='page-item'><a class='page-link' href='search-ads.php?keyword=$keyword&service=$service&country=$country&page=" . $page . "'>" . $page . "</a></li>";
                 }
                 echo "</ul></nav></div></div></div>";
             }
@@ -168,20 +170,33 @@
 
         //to show ads by the user
         function showAdImages($userIdd, $conn) {
+            if (empty($_GET['service'])) {
+                $service = "all";
+                $country = "all";
+                $keyword = $_GET['keyword'];
+            } else {
+                $service = $_GET['service'];
+                $country = $_GET['country'];
+                $keyword = $_GET['keyword'];
+            }
 
             $resultPerPage = 1;
 
-            $sql2 = "SELECT * FROM ad WHERE userid=?";
+//            $sql2 = "SELECT * FROM ad WHERE userid=?";
+            $sql2 = "SELECT * FROM ad WHERE adstatus='pending' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
 
             $success = "pending";
+            $keywordd = "%{$_GET['keyword']}%";
 
             $stmt2 = mysqli_stmt_init($conn);
             mysqli_stmt_prepare($stmt2, $sql2);
-            mysqli_stmt_bind_param($stmt2, "i", $userIdd);
+//            mysqli_stmt_bind_param($stmt2, "i", $userIdd);
+            mysqli_stmt_bind_param($stmt2, "sss", $keywordd, $keywordd, $keywordd);
             mysqli_stmt_execute($stmt2);
 
             $result2 = mysqli_stmt_get_result($stmt2);
             $numOfResults2 = mysqli_num_rows($result2);
+            echo 'Results: ' . $numOfResults2;
 
 
             if (!isset($_GET['page'])) {
@@ -192,7 +207,7 @@
 
             $thisPageFirstResult = ($page - 1) * $resultPerPage;
 
-            $sql = "SELECT * FROM ad WHERE userid=?  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+            $sql = "SELECT * FROM ad WHERE userid=? AND adstatus='pending' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
 
 
             $stmt = mysqli_stmt_init($conn);
@@ -201,7 +216,7 @@
                 echo 'error';
             } else {
                 $success = "pending";
-                mysqli_stmt_bind_param($stmt, "i", $userIdd);
+                mysqli_stmt_bind_param($stmt, "isss", $userIdd, $keywordd, $keywordd, $keywordd);
                 mysqli_stmt_execute($stmt);
 
                 $result = mysqli_stmt_get_result($stmt);
@@ -209,7 +224,7 @@
                 $numOfResults = mysqli_num_rows($result);
 //                echo "Number of results Main: " . $numOfResults . "</br>";
 
-                echo "<div class='container table-responsive'>
+                echo "<div class='container'>
                     <div class='row'>
                         <div class='col-3'>
                         
@@ -217,11 +232,11 @@
                         <div class='col-9'>                                                
                     
                 <table class='table'>                    
-                    <tbody>";
-
+                    <tbody>";                
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
                     $adId = $row['adid'];
+//                    $sql2 = "SELECT * FROM adimage WHERE adid='$adId' AND userid='$userIdd' LIMIT 1;";
                     $sql2 = "SELECT * FROM adimage WHERE adid='$adId' AND userid='$userIdd' LIMIT 1;";
 //                    echo $adId;
 
@@ -235,16 +250,18 @@
                             $fileActualExt = $fileExt[1];
 
                             echo "<td class='text-right'>";
-                            echo "<img src='uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "." . $fileActualExt . "?" . mt_rand() . "' style='width:150px;height:150px;' class='rounded float-right'>";                           
+                            echo "<img src='uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "." . $fileActualExt . "?" . mt_rand() . "' style='width:150px;height:150px;' class='rounded float-right'>";
                             echo"</td>";
 
-                            echo "<td class='text-left'>";
-                            echo "<a class='card-link' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
+                            echo "<td class='text-left' style='width:100%;'>";
+                            echo "<h3>";
+                            echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
-                            echo "<h5>";
+                            echo "</h3>";
+                            echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
-                            echo "</h5>";
+                            echo "</h6>";
                             echo"</td>";
 
 
@@ -341,16 +358,18 @@
         if ($queryResult > 0) {
             echo 'Results found: ' . $queryResult;
         } else {
-            echo 'No results matching your search!';
+//            echo 'No results matching your search!';
         }
         ?>
 
+        
 
-        <hr class="style3">
+        <hr class="sty-le3">
 
         <?php
         include_once './includes/footer.php';
         ?>
+        
 
 
         <div class="scrolltop">
