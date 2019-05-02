@@ -12,8 +12,14 @@
         }
         include './includes/dbConnection.php';
 
-        $service = $_GET['service'];
-        $country = $_GET['country'];
+        if (empty($_GET['service'])) {
+            $service = "all";
+            $country = "all";
+        } else {
+            $service = $_GET['service'];
+            $country = $_GET['country'];
+        }
+
         $keyword = $_GET['keyword'];
         $userId = $_SESSION['userid'];
         if ($keyword == "") {
@@ -131,12 +137,17 @@
         </div>
 
         <!--Showing ads-->
-
         <?php
 
         function pagination($numOfResults, $resultPerPage) {
-            $service = $_GET['service'];
-            $country = $_GET['country'];
+            if (empty($_GET['service'])) {
+                $service = "all";
+                $country = "all";
+            } else {
+                $service = $_GET['service'];
+                $country = $_GET['country'];
+            }
+
             $keyword = $_GET['keyword'];
             $userId = $_SESSION['userid'];
             $numberOfPages = ceil($numOfResults / $resultPerPage);
@@ -203,9 +214,7 @@
                         <div class='col-3'>
                         
                         </div>
-                        <div class='col-9'>
-                        
-                        
+                        <div class='col-9'>                                                
                     
                 <table class='table'>                    
                     <tbody>";
@@ -225,22 +234,25 @@
                             $fileExt = explode(".", $fileInfo[0]);
                             $fileActualExt = $fileExt[1];
 
-                            echo "<td>";
-                            echo "<img src='uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "." . $fileActualExt . "?" . mt_rand() . "' style='width:50px;height:50px;' class='rounded float-left'>";
+                            echo "<td class='text-right'>";
+                            echo "<img src='uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "." . $fileActualExt . "?" . mt_rand() . "' style='width:150px;height:150px;' class='rounded float-right'>";                           
                             echo"</td>";
 
                             echo "<td class='text-left'>";
                             echo "<a class='card-link' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
+                            echo "<h5>";
+                            echo $row['addescription'];
+                            echo "</h5>";
                             echo"</td>";
 
-                            
+
 
                             echo "</tr>";
-                        } else { //profile pic not set
-                            echo "<td>";
-                            echo "<img src='http://placehold.it/500' style='width:500px;height:500px;' class='rounded float-left'>";
+                        } else { //ad pic not set
+                            echo "<td class='text-right'>";
+                            echo "<img src='http://placehold.it/500' style='width:150px;height:150px;' class='rounded float-right'>";
                             echo"</td>";
 
                             echo "<td class='text-left'>";
@@ -272,7 +284,7 @@
                 </table>
                 </div>
                 </div>";
-                
+
                 pagination($numOfResults2, $resultPerPage);
                 echo "</div>";
             }
