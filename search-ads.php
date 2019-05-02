@@ -35,7 +35,7 @@
 
         <!-- Custom styles for this template -->
         <link href="css/index/carousel.css" rel="stylesheet">
-        
+
         <!--<link href="css/main/font-awesome.min.css" rel="stylesheet">-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="css/searchpage/custom.css" rel="stylesheet">
@@ -153,7 +153,7 @@
 
             $keyword = $_GET['keyword'];
             $userId = $_SESSION['userid'];
-            
+
             $numberOfPages = ceil($numOfResults / $resultPerPage);
 //            echo "Number of Results: " . $numOfResults . "</br>";
 //            echo "Results  per page: " . $resultPerPage . "</br>";
@@ -180,7 +180,7 @@
                 $keyword = $_GET['keyword'];
             }
 
-            $resultPerPage = 1;
+            $resultPerPage = 2;
 
 //            $sql2 = "SELECT * FROM ad WHERE userid=?";
             $sql2 = "SELECT * FROM ad WHERE adstatus='pending' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
@@ -196,7 +196,7 @@
 
             $result2 = mysqli_stmt_get_result($stmt2);
             $numOfResults2 = mysqli_num_rows($result2);
-            echo 'Results: ' . $numOfResults2;
+//            echo 'Results: ' . $numOfResults2;
 
 
             if (!isset($_GET['page'])) {
@@ -226,13 +226,13 @@
 
                 echo "<div class='container'>
                     <div class='row'>
-                        <div class='col-3'>
+                        <div class='col-2'>
                         
                         </div>
-                        <div class='col-9'>                                                
+                        <div class='col-10'>                                                
                     
                 <table class='table'>                    
-                    <tbody>";                
+                    <tbody>";
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
                     $adId = $row['adid'];
@@ -242,7 +242,7 @@
 
                     $resultImage = mysqli_query($conn, $sql2);
                     while ($rowImage = mysqli_fetch_assoc($resultImage)) { //runs only one time
-                        if ($rowImage['adimagestatus'] == 0) { //profile pic set
+                        if ($rowImage['adimagestatus'] == 0) { //ad pic set
                             $fileName = "uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "*";
                             $fileInfo = glob($fileName);
 
@@ -254,14 +254,81 @@
                             echo"</td>";
 
                             echo "<td class='text-left' style='width:100%;'>";
+                            
                             echo "<h3>";
                             echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
                             echo "</h3>";
+                            
                             echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
                             echo "</h6>";
+                            
+                            echo '<br>';
+                            
+                            $country = $row['countryid'];
+                            switch ($country){
+                                case 1:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Sri Lanka</p>";
+                                    break;
+                                case 2:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> India</p>";
+                                    break;
+                                case 3:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Thailand</p>";
+                                    break;
+                                case 4:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Taiwan</p>";
+                                    break;
+                                case 5:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Indonesia</p>";
+                                    break;
+                                case 6:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Philippines</p>";
+                                    break;
+                                case 7:
+                                    echo "<p class='countryname'<i class='fa fa-flag'></i> >Malaysia</p>";
+                                    break;
+                                case 8:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Japan</p>";
+                                    break;
+                                case 9:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Australia</p>";
+                                    break;
+                                case 10:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Vietnam</p>";
+                                    break;
+                            }
+                            
+                            $service = $row['serviceid'];
+                            switch ($service){
+                                case 1:
+                                    echo "<p class='servicename'><i class='fa fa-building'></i>Hotel</p>";
+                                    break;
+                                case 2:
+                                    echo "<p class='servicename'><i class='fa fa-building'></i> Restaurant</p>";
+                                    break;
+                                case 3:
+                                    echo "<p class='servicename'><i class='fa fa-building'></i> Annex</p>";
+                                    break;
+                                case 4:
+                                    echo "<p class='servicename'<i class='fa fa-building'></i>> Spa</p>";
+                                    break;
+                                case 5:
+                                    echo "<p class='servicename'><i class='fa fa-map'></i> Guide</p>";
+                                    break;
+                                case 6:
+                                    echo "<p class='servicename'><i class='fa fa-flag'></i> Tour</p>";
+                                    break;
+                                case 7:
+                                    echo "<p class='servicename'><i class='fa fa-umbrella'></i> Beach Boy</p>";
+                                    break;
+                                case 8:
+                                    echo "<p class='servicename'><i class='fa fa-car'></i> Escort</p>";
+                                    break;                                
+                            }
+                            
                             echo"</td>";
 
 
@@ -272,15 +339,15 @@
                             echo "<img src='http://placehold.it/500' style='width:150px;height:150px;' class='rounded float-right'>";
                             echo"</td>";
 
-                            echo "<td class='text-left'>";
-                            echo "<a class='card-link' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
+                            echo "<td class='text-left' style='width:100%;'>";
+                            echo "<h3>";
+                            echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
-                            echo"</td>";
-
-                            echo "<td>";
-                            echo "<a style='margin-right:5px;' class='btn btn-warning btn-sm' href='post-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "' role='button'>Edit</a>";
-                            echo "<a class='btn btn-danger btn-sm delete' href='#' id='" . $adId . "' onclick='showDeleteConfirm(this)' role='button'>Delete</a>";
+                            echo "</h3>";
+                            echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
+                            echo $row['addescription'];
+                            echo "</h6>";
                             echo"</td>";
 
                             echo "<td>";
@@ -356,20 +423,20 @@
         $queryResult = mysqli_num_rows($result);
 
         if ($queryResult > 0) {
-            echo 'Results found: ' . $queryResult;
+//            echo 'Results found: ' . $queryResult;
         } else {
 //            echo 'No results matching your search!';
         }
         ?>
 
-        
 
-        <hr class="sty-le3">
+
+        <hr class="style3">
 
         <?php
         include_once './includes/footer.php';
         ?>
-        
+
 
 
         <div class="scrolltop">

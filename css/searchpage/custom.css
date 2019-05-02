@@ -1,3 +1,13 @@
 .filterbar > div > ul > li{
    
 }
+
+.countryname{
+    font-size: 14px;
+}
+.servicename{
+    font-size: 14px;
+}
+tr:hover{
+    cursor: pointer;    
+}
