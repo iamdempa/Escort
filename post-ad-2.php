@@ -358,7 +358,7 @@ and open the template in the editor.
                             <label for="file1">
                                 <img id="blah1" src="http://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-1"><i class="fa fa-trash"></i> Remove Photo</button>
-                                <small id="textCount" class="form-text text-center bold">This will be the main Thumbnail</small>
+                                <small id="textCount" class="form-text text-center bold">This will be the Thumbnail</small>
 
                                 <!--===============================-->
                                 <div class="form-group">
@@ -377,7 +377,7 @@ and open the template in the editor.
                             <label for="file2">
                                 <img id="blah2" src="http://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-2"><i class="fa fa-trash"></i> Remove Photo</button>
-                                <small id="textCount" class="form-text text-center bold">Thumbnail 2</small>
+                                <small id="textCount" class="form-text text-center bold"></small>
 
                                 <!--===============================-->
                                 <div class="form-group">
@@ -395,7 +395,7 @@ and open the template in the editor.
                             <label for="file3">
                                 <img id="blah3" src="http://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-3"><i class="fa fa-trash"></i> Remove Photo</button>
-                                <small id="textCount" class="form-text text-center bold">Thumbnail 3</small>
+                                <small id="textCount" class="form-text text-center bold"></small>
 
                                 <!--===============================-->
                                 <div class="form-group">
@@ -413,7 +413,7 @@ and open the template in the editor.
                             <label for="file4">
                                 <img id="blah4" src="http://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-4"><i class="fa fa-trash"></i> Remove Photo</button>
-                                <small id="textCount" class="form-text text-center bold">Thumbnail 4</small>
+                                <small id="textCount" class="form-text text-center bold"></small>
 
                                 <!--===============================-->
                                 <div class="form-group">
@@ -666,8 +666,7 @@ and open the template in the editor.
 
                 if (element.files && element.files[0]) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
-
+                    reader.onload = function (e) {                        
                         $('#' + id).attr('src', e.target.result);
 
                         $('#' + id).prop('disabled', true);
@@ -723,13 +722,12 @@ and open the template in the editor.
                     success: function (php_script_response) {
 //                        alert(php_script_response); // display response from the PHP script, if any
 
-                        if (php_script_response === "" || php_script_response.length === 0) {
-                            alert("uploaded");
+                        if (php_script_response === "" || php_script_response.length === 0) {                            
                             $('.' + msgId).text("Image Uploaded Successfully!");
                             setTimeout(function () {
                                 $('.' + msgId).css("display", "none");
                             }, 1500);
-                            exit;
+                            
                         } else {
                             if (php_script_response === "error result") {
                                 //alert("Unknown Error Occured! Try again later...");
