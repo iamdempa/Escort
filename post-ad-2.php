@@ -252,8 +252,6 @@ and open the template in the editor.
                                             $("div.form-group select").val(countryid);
                                         }
 
-
-
                                     }
                                 </script>
 
@@ -638,6 +636,8 @@ and open the template in the editor.
             function deletePhoto(imgeName, userid, adId) {
                 $(document).ready(function () {
 
+                    setCookies();
+                    
                     $.ajax({
                         url: 'includes/remove-ad-image-inc-2.php',
                         dataType: 'text', // what to expect back from the PHP script, if anything                        
@@ -657,16 +657,39 @@ and open the template in the editor.
             }
         </script>
 
+        <script>
+            function setCookies(){
+                var cookieEmiail = document.getElementById("email").value;
+                var cookieTel = document.getElementById("tel").value;
+                var cookieTelOffice = document.getElementById("teloffice").value;
+                var cookieStreet = document.getElementById("street").value;
+                var cookieCity = document.getElementById("city").value;
+                var cookieState = document.getElementById("state").value;
 
-
+                document.cookie = "cookieEmail = " + cookieEmiail;
+                document.cookie = "cookieTel = " + cookieTel;
+                document.cookie = "cookieTelOffice = " + cookieTelOffice;
+                document.cookie = "cookieStreet = " + cookieStreet;
+                document.cookie = "cookieCity = " + cookieCity;
+                document.cookie = "cookieState = " + cookieState;
+            }
+        </script>
 
         <script type="text/javascript">
+
             $('.progress').hide();
+
+
+
             function readURL(element, id, fileid, buttonid, imgno, progressBarId, progressDivId, msgId) {
+
+//                $(document).ready(function () {
+                
+//            });
 
                 if (element.files && element.files[0]) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {                        
+                    reader.onload = function (e) {
                         $('#' + id).attr('src', e.target.result);
 
                         $('#' + id).prop('disabled', true);
@@ -683,6 +706,9 @@ and open the template in the editor.
 
 
             function upload(fileid, imgno, progressBarId, msgId, buttonid) {
+                
+                setCookies();
+            
                 $('#' + progressBarId).css('width', '0');
                 $('#' + msgId).text('');
                 var data = new FormData();
@@ -690,6 +716,7 @@ and open the template in the editor.
                     data.append('file' + i, file);
                     data.append('imgno', imgno);
                 });
+
                 $.ajax({
                     url: 'includes/upload-ad-image-inc-2.php',
                     dataType: 'text', // what to expect back from the PHP script, if anything
@@ -722,12 +749,13 @@ and open the template in the editor.
                     success: function (php_script_response) {
 //                        alert(php_script_response); // display response from the PHP script, if any
 
-                        if (php_script_response === "" || php_script_response.length === 0) {                            
+                        if (php_script_response === "" || php_script_response.length === 0) {
+
                             $('.' + msgId).text("Image Uploaded Successfully!");
                             setTimeout(function () {
                                 $('.' + msgId).css("display", "none");
                             }, 1500);
-                            
+
                         } else {
                             if (php_script_response === "error result") {
                                 //alert("Unknown Error Occured! Try again later...");
@@ -791,6 +819,8 @@ and open the template in the editor.
             }
         </script>
 
+
+
         <script type="text/javascript">
 
             function textCounter(field, field2, maxlimit)
@@ -822,6 +852,23 @@ and open the template in the editor.
 
 
         </script>
+
+        <?php
+        $cookieEmail = $_COOKIE['cookieEmail'];
+        $cookieTel = $_COOKIE['cookieTel'];
+        $cookieTelOffice = $_COOKIE['cookieTelOffice'];
+        $cookieStreet = $_COOKIE['cookieStreet'];
+        $cookieCity = $_COOKIE['cookieCity'];
+        $cookieState = $_COOKIE['cookieState'];
+
+
+        echo "<script>console.log( '" . $cookieEmail . "' );</script>";
+        echo "<script>console.log( '" . $cookieTel . "' );</script>";
+        echo "<script>console.log( '" . $cookieTelOffice . "' );</script>";
+        echo "<script>console.log( '" . $cookieStreet . "' );</script>";
+        echo "<script>console.log( '" . $cookieCity . "' );</script>";
+        echo "<script>console.log( '" . $cookieState . "' );</script>";
+        ?>
 
 
 
