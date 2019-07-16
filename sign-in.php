@@ -58,7 +58,7 @@ if (isset($_SESSION['username'])) {
                 </button>
               </div>";
         } else if (isset($_GET['loginError'])) {
-            echo "<div class='alertmekata alert-danger alert-dismissible fade show text-center' role='alert'>
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
                 <strong>Invalid Credentials!</strong> Make sure you enetered correct login credentials.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
