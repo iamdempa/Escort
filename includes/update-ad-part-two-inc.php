@@ -44,14 +44,14 @@ if (isset($_POST['submit'])) {
         for ($index1 = 0; $index1 < count($arr); $index1++) {
 
             if (!empty($arr[$index1])) {   //if not empty   
-                echo 'UPDATED-';
+                echo '-updated-';
                 $sql = "UPDATE ad SET " . $arrColumns[$index1] . "=? WHERE adid=?;";
 
                 $stmt = mysqli_stmt_init($conn);
                 if (!mysqli_stmt_prepare($stmt, $sql)) {
                     echo 'error';
                 } else {
-//                    echo 'hi';
+                    echo 'hi';
                     $sql = "SHOW FIELDS FROM ad;";
                     $result = mysqli_query($conn, $sql);
                     if (mysqli_num_rows($result) > 0) {
@@ -69,7 +69,7 @@ if (isset($_POST['submit'])) {
                             header("Location: ../AdminDashboard/new-ads.php?addUpdateSuccess=newAds");
                         } else if (isset($_SESSION['admin']) && !empty($_SESSION['admin']) && isset($_SESSION['decline'])) {
                             header("Location: ../AdminDashboard/declined-ads.php?addUpdateSuccess=declinedAds");
-                        } else {
+                        } else { //a normal user
                             header("Location: ../user-profile.php?addSuccess");
                         }
                     } else {
@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
                     }
                 }
             } else {
-                echo 'FAILED-';
+                echo '-not update-';
             }
         }
 
