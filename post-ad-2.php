@@ -166,14 +166,14 @@ and open the template in the editor.
                                         } else {
 
                                             if (isset($_COOKIE['cookieTelOffice'])) {
-                                                echo "<script>alert('set');</script>";
+                                                
                                                 echo "<div class='form-group'>
                                     <label for='tel' class='col-form-label'><i class='fa fa-building'></i> Company</label>
                                     <input type='text' name='office' value='" . $_COOKIE['cookieTelOffice'] . "' class='form-control' id='teloffice' placeholder='+94 1 23 45 67 89'>
                                     <div class='phone-feedback'></div>
                                 </div>";
                                             } else {
-                                                echo "<script>alert('not set');</script>";
+                                                
                                                 echo "<div class='form-group'>
                                     <label for='tel' class='col-form-label'><i class='fa fa-building'></i> Company</label>
                                     <input type='text' name='office' class='form-control' id='teloffice' placeholder='+94 1 23 45 67 89'>
@@ -337,53 +337,6 @@ and open the template in the editor.
             </div>    
             <input type="submit" name="submit" id="submit-details-form" hidden=""> 
         </form>
-
-
-
-        <script type="text/javascript">
-//            $(document).ready(function () {
-//                var check = localStorage.getItem("email");
-//                if (check === null) {
-////                    alert("Null");
-//                } else {
-//                    if (check.length === 0) { //no data set
-//                        alert("Data not set");
-//
-//                        var email = $('#email').val();
-//                        var tel = $('#tel').val();
-//                        var teloffice = $('#teloffice').val();
-//                        var street = $('#street').val();
-//                        var city = $('#city').val();
-//                        var state = $('#state').val();
-//
-//
-//                        localStorage.setItem("email", email);
-//                        localStorage.setItem("tel", tel);
-//                        localStorage.setItem("teloffice", teloffice);
-//                        localStorage.setItem("street", street);
-//                        localStorage.setItem("city", city);
-//                        localStorage.setItem("state", state);
-//
-//                        $('#email').val(localStorage.getItem("email"));
-//                        $('#tel').val(localStorage.getItem("tel"));
-//                        $('#teloffice').val(localStorage.getItem("teloffice"));
-//                        $('#street').val(localStorage.getItem("street"));
-//                        $('#city').val(localStorage.getItem("city"));
-//                        $('#state').val(localStorage.getItem("state"));
-//
-//                    } else {
-//                        $('#email').val(localStorage.getItem("email"));
-//                        $('#tel').val(localStorage.getItem("tel"));
-//                        $('#teloffice').val(localStorage.getItem("teloffice"));
-//                        $('#street').val(localStorage.getItem("street"));
-//                        $('#city').val(localStorage.getItem("city"));
-//                        $('#state').val(localStorage.getItem("state"));
-//                    }
-//                }
-//
-//            });
-        </script>
-
 
 
         <form id="image_form" action="#" method="POST" enctype="multipart/form-data">
@@ -630,6 +583,24 @@ and open the template in the editor.
                 }
             });
         </script>
+        
+        <script>
+            function setCookies() {
+                var cookieEmiail = document.getElementById("email").value;
+                var cookieTel = document.getElementById("tel").value;
+                var cookieTelOffice = document.getElementById("teloffice").value;
+                var cookieStreet = document.getElementById("street").value;
+                var cookieCity = document.getElementById("city").value;
+                var cookieState = document.getElementById("state").value;
+
+                document.cookie = "cookieEmail = " + cookieEmiail;
+                document.cookie = "cookieTel = " + cookieTel;
+                document.cookie = "cookieTelOffice = " + cookieTelOffice;
+                document.cookie = "cookieStreet = " + cookieStreet;
+                document.cookie = "cookieCity = " + cookieCity;
+                document.cookie = "cookieState = " + cookieState;
+            }
+        </script>
 
         <script type="text/javascript">
 
@@ -695,6 +666,7 @@ and open the template in the editor.
             function deletePhoto(imgeName, userid, adId) {
                 $(document).ready(function () {
 
+                    //set cookies
                     setCookies();
 
                     $.ajax({
@@ -716,23 +688,7 @@ and open the template in the editor.
             }
         </script>
 
-        <script>
-            function setCookies() {
-                var cookieEmiail = document.getElementById("email").value;
-                var cookieTel = document.getElementById("tel").value;
-                var cookieTelOffice = document.getElementById("teloffice").value;
-                var cookieStreet = document.getElementById("street").value;
-                var cookieCity = document.getElementById("city").value;
-                var cookieState = document.getElementById("state").value;
-
-                document.cookie = "cookieEmail = " + cookieEmiail;
-                document.cookie = "cookieTel = " + cookieTel;
-                document.cookie = "cookieTelOffice = " + cookieTelOffice;
-                document.cookie = "cookieStreet = " + cookieStreet;
-                document.cookie = "cookieCity = " + cookieCity;
-                document.cookie = "cookieState = " + cookieState;
-            }
-        </script>
+        
 
         <script type="text/javascript">
 
@@ -766,6 +722,7 @@ and open the template in the editor.
 
             function upload(fileid, imgno, progressBarId, msgId, buttonid) {
 
+                //set the cookies
                 setCookies();
 
                 $('#' + progressBarId).css('width', '0');
