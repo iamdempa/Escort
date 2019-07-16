@@ -11,7 +11,6 @@ include_once './dbConnection.php';
 
 if (isset($_POST['submit'])) {
 
-
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $mobile = mysqli_real_escape_string($conn, $_POST['mobile']);
     $office = mysqli_real_escape_string($conn, $_POST['office']);

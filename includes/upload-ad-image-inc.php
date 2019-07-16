@@ -31,9 +31,6 @@ if (isset($_FILES['file0']) && isset($_POST['imgno'])) {
 
 //    echo 'mokada une';
 
-
-
-
     $file = $_FILES['file0'];
     $fileName = $_FILES['file0']['name'];
     $fileTempName = $_FILES['file0']['tmp_name'];

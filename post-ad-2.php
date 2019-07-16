@@ -90,19 +90,10 @@ and open the template in the editor.
         </script>
 
 
-
-
-
-
-
         <!-- Sign up form -->
         <div></div>
 
-
-
         <form id="form1" action="includes/update-ad-part-two-inc.php" method="POST" enctype="multipart/form-data">
-
-
 
             <div class="container">
                 <div class="row">
@@ -353,9 +344,6 @@ and open the template in the editor.
 
                 }
             </script>
-
-
-
 
 
             <!--ad images upload--> 
@@ -736,12 +724,12 @@ and open the template in the editor.
 //                        alert(php_script_response); // display response from the PHP script, if any
 
                         if (php_script_response === "" || php_script_response.length === 0) {
-//                            alert("nothing");
+                            alert("uploaded");
                             $('.' + msgId).text("Image Uploaded Successfully!");
                             setTimeout(function () {
                                 $('.' + msgId).css("display", "none");
                             }, 1500);
-
+                            exit;
                         } else {
                             if (php_script_response === "error result") {
                                 //alert("Unknown Error Occured! Try again later...");
