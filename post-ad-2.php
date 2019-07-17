@@ -13,14 +13,14 @@ if (isset($_SESSION['admin'])) {
     $userId = $_SESSION['userid'];
 }
 
-if (isset($_GET['updatePartOne']) == "yes" && isset($_GET['newAd']) == "yes") {  //if someone clicked ad edit button on the user page
+if (isset($_GET['updatePartOne']) == "yes" && isset($_GET['newAd']) == "yes") {  //if someone clicked post ad button on the user page to create a new ad
 //    $adId = $_SESSION['editAdId'];
     $adId = $_SESSION['adid'];
     echo 'ONE';
-} else if (isset($_GET['updatePartOneByAdmin']) || !empty($_GET['updatePartOneByAdmin'])) {
+} else if (isset($_GET['updatePartOneByAdmin']) || !empty($_GET['updatePartOneByAdmin'])) { //if admin is going to update the ad
     $adId = $_SESSION['editAdId'];
     echo 'TWO';
-} else if (isset($_GET['updatePartOne']) == "success" && isset($_GET['byUser']) == "yes") {
+} else if (isset($_GET['updatePartOne']) == "success" && isset($_GET['byUser']) == "yes") { //if user clicked on ad edit button
 //ID's
 
     $adId = $_SESSION['editAdId'];
@@ -127,16 +127,26 @@ and open the template in the editor.
                                 <h2 class="card-title text-center"><i class='fa fa-phone'></i> Your contact details</h2>
                                 <?php
                                 $sql = "SELECT * FROM ad WHERE adid='$adId'";
-
+                                
                                 $result = mysqli_query($conn, $sql);
 
                                 if (mysqli_num_rows($result) > 0) {
                                     while ($row = mysqli_fetch_assoc($result)) {
-                                        echo "<div class='form-group'>
+                                        
+                                        if(!empty($row['adcontactemail'])){
+                                            echo "<div class='form-group'>
                                     <label for='email' class='col-form-label'><i class='fa fa-envelope'></i> Email</label>
                                     <input type='email' name='email' class='form-control' value='" . $row['adcontactemail'] . "' id='email' placeholder='example@gmail.com' >
                                     <div class='email-feedback'></div>
                                 </div>";
+                                        }else{
+                                            echo "<div class='form-group'>
+                                    <label for='email' class='col-form-label'><i class='fa fa-envelope'></i> Email</label>
+                                    <input type='email' name='email' class='form-control' id='email' placeholder='example@gmail.com' >
+                                    <div class='email-feedback'></div>
+                                </div>";
+                                        }
+                                        
                                         if (!empty($row['adcontactmobile'])) {
                                             echo "<div class='form-group'>
                                     <label for='tel' class='col-form-label'><i class='fa fa-mobile-phone'></i> Mobile</label>
@@ -573,13 +583,17 @@ and open the template in the editor.
         </script>
         <script>
             $(document).ready(function () {
-
+                var cookieEmail= localStorage.getItem("cookieEmail");
                 var cookieTel = localStorage.getItem("cookieTel");
                 var cookieTelOffice = localStorage.getItem("cookieTelOffice");
                 var cookieStreet = localStorage.getItem("cookieStreet");
                 var cookieCity = localStorage.getItem("cookieCity");
                 var cookieState = localStorage.getItem("cookieState");
-                                    
+                 
+                 
+                if (cookieEmail && cookieEmail.length > 0) {
+                    document.getElementById('email').value = cookieEmail;
+                }
                 if (cookieTel && cookieTel.length > 0) {
                     document.getElementById('tel').value = cookieTel;
                 }
