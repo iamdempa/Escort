@@ -22,10 +22,16 @@
 
         $keyword = $_GET['keyword'];
         $userId = $_SESSION['userid'];
-        if ($keyword == "") {
-            echo "<title>Escort - Search Adz</title>";
+        if (!isset($keyword)) {
+            header("Location: index.php");
+            exit();
         } else {
-            echo "<title>$keyword - Escort Search Ads</title>";
+            if(strlen($keyword) > 0){
+                echo "<title>$keyword - Escort Search Ads</title>";
+            }else{
+                echo "<title>Search - Escort Search Ads</title>";
+            }
+            
         }
         ?>
 
@@ -45,16 +51,14 @@
 
 
     </head>
-    <body>
+    <body style="background: #f0f0f0">
         <div class="thetop"></div>
         <?php
         include_once './includes/header.php';
         ?>
         <br>
 
-
-
-        <div class="container">
+        <div class="container" style="background: #ffffff; border-radius: 10px">
             <div class="row text-center">
                 <div class="col-12 col-md-12">
 
@@ -116,7 +120,14 @@
                                     <li class="nav-item px-6">                                    
                                         <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
                                         <div class="col-sm-12">
-                                            <input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">                            
+                                            <?php 
+                                                if($keyword != "" || strlen($keyword) == 0 ){
+                                                   echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="'.$keyword.'" value="'.$keyword.'" aria-label="Search">';
+                                                }else{
+                                                    echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
+                                                }
+                                            ?>
+                                                                        
                                         </div>
 
                                     </li>
@@ -143,6 +154,7 @@
         <?php
 
         function pagination($numOfResults, $resultPerPage) {
+
             if (empty($_GET['service'])) {
                 $service = "all";
                 $country = "all";
@@ -161,7 +173,7 @@
             . "<ul class='pagination'>";
             if ($numberOfPages != 1) {
                 for ($page = 1; $page <= $numberOfPages; $page++) {
-
+                                        
                     echo "<li class='page-item'><a class='page-link' href='search-ads.php?keyword=$keyword&service=$service&country=$country&page=" . $page . "'>" . $page . "</a></li>";
                 }
                 echo "</ul></nav></div></div></div>";
@@ -170,20 +182,40 @@
 
         //to show ads by the user
         function showAdImages($userIdd, $conn) {
-            if (empty($_GET['service'])) {
+
+            //if user clicked search from the index page
+            if (empty($_GET['service']) || empty($_GET['country'])) {
                 $service = "all";
                 $country = "all";
                 $keyword = $_GET['keyword'];
-            } else {
+            } else { //if user is in search page and clicked search
                 $service = $_GET['service'];
                 $country = $_GET['country'];
                 $keyword = $_GET['keyword'];
             }
 
-            $resultPerPage = 2;
+            $resultPerPage = 5;
+            $adStatus = "pending"; //CHANGE THIS TO success 
 
 //            $sql2 = "SELECT * FROM ad WHERE userid=?";
-            $sql2 = "SELECT * FROM ad WHERE adstatus='pending' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
+            if($service == "all" && $country == "all"){
+                $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
+            }
+            if($service == "all" && $country != "all"){
+                $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND countryid='$country' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
+            }
+                
+            if($service != "all" && $country == "all"){
+                $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND serviceid='$service' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
+            }
+            
+            if($service != "all" && $country != "all"){
+                $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND serviceid='$service' AND countryid='$country' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
+            }
+            
+                
+            
+            
 
             $success = "pending";
             $keywordd = "%{$_GET['keyword']}%";
@@ -207,7 +239,24 @@
 
             $thisPageFirstResult = ($page - 1) * $resultPerPage;
 
-            $sql = "SELECT * FROM ad WHERE userid=? AND adstatus='pending' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+            if($service == "all" && $country == "all"){
+                $sql = "SELECT * FROM ad WHERE userid=? AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+            }
+            
+            if($service == "all" && $country != "all"){
+                $sql = "SELECT * FROM ad WHERE userid=? AND countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+            }
+            
+            if($service != "all" && $country == "all"){
+                $sql = "SELECT * FROM ad WHERE userid=? AND serviceid='$service' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+            }
+            
+            if($service != "all" && $country != "all"){
+                $sql = "SELECT * FROM ad WHERE userid=? AND serviceid='$service' AND countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+            }
+            
+        
+            
 
 
             $stmt = mysqli_stmt_init($conn);
@@ -226,10 +275,10 @@
 
                 echo "<div class='container'>
                     <div class='row'>
-                        <div class='col-2'>
+                        <div class='col-4'>
                         
                         </div>
-                        <div class='col-10'>                                                
+                        <div class='col-8' style='background: #ffffff; border-radius: 10px'>                                                
                     
                 <table class='table'>                    
                     <tbody>";
@@ -254,21 +303,21 @@
                             echo"</td>";
 
                             echo "<td class='text-left' style='width:100%;'>";
-                            
+
                             echo "<h3>";
                             echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
                             echo "</h3>";
-                            
+
                             echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
                             echo "</h6>";
-                            
+
                             echo '<br>';
-                            
+
                             $country = $row['countryid'];
-                            switch ($country){
+                            switch ($country) {
                                 case 1:
                                     echo "<p class='countryname'><i class='fa fa-flag'></i> Sri Lanka</p>";
                                     break;
@@ -300,9 +349,9 @@
                                     echo "<p class='countryname'><i class='fa fa-flag'></i> Vietnam</p>";
                                     break;
                             }
-                            
+
                             $service = $row['serviceid'];
-                            switch ($service){
+                            switch ($service) {
                                 case 1:
                                     echo "<p class='servicename'><i class='fa fa-building'></i>Hotel</p>";
                                     break;
@@ -319,16 +368,16 @@
                                     echo "<p class='servicename'><i class='fa fa-map'></i> Guide</p>";
                                     break;
                                 case 6:
-                                    echo "<p class='servicename'><i class='fa fa-flag'></i> Tour</p>";
+                                    echo "<p class='servicename'><i class='fa fa-plane'></i> Tour</p>";
                                     break;
                                 case 7:
                                     echo "<p class='servicename'><i class='fa fa-umbrella'></i> Beach Boy</p>";
                                     break;
                                 case 8:
                                     echo "<p class='servicename'><i class='fa fa-car'></i> Escort</p>";
-                                    break;                                
+                                    break;
                             }
-                            
+
                             echo"</td>";
 
 
