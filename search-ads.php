@@ -277,10 +277,15 @@
                     <div class='row'>
                         <div class='col-4'>
                         
-                        </div>
-                        <div class='col-8' style='background: #ffffff; border-radius: 10px'>                                                
+                        </div>";
+                        if($numOfResults2 < 1){ //no result
+                            echo "<div class='col-8' style='background: #f0f0f0; border-radius: 10px;margin-bottom:200px;'><h1>No ads found!</h1>";
+                        }else{ //has a result
+                            echo "<div class='col-8' style='background: #ffffff; border-radius: 10px;margin-bottom:200px;'>";
+                        }
+                                                                        
                     
-                <table class='table'>                    
+                echo "<table class='table'>                    
                     <tbody>";
                 while ($row = mysqli_fetch_assoc($result)) {
                     echo "<tr>";
