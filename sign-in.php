@@ -33,7 +33,19 @@ if (isset($_SESSION['username'])) {
 
     </head>
     <body>
+        
+        <!--changing the local storage values-->
+        <script>
+            localStorage.setItem("cookieEmail", "");
+            localStorage.setItem("cookieTel", "");
+            localStorage.setItem("cookieTelOffice", "");
+            localStorage.setItem("cookieStreet", "");
+            localStorage.setItem("cookieCity", "");
+            localStorage.setItem("cookieState", "");
+        </script>
+        
         <div class="thetop"></div>
+        
 
         <?php
         if (isset($_GET['success'])) {

@@ -580,25 +580,21 @@ and open the template in the editor.
                 var cookieCity = localStorage.getItem("cookieCity");
                 var cookieState = localStorage.getItem("cookieState");
                                     
-                if (cookieTel) {
+                if (cookieTel && cookieTel.length > 0) {
                     document.getElementById('tel').value = cookieTel;
                 }
-                if(cookieTelOffice){
-                    document.getElementById('telOffice').value = cookieTel;
+                if(cookieTelOffice && cookieTelOffice.length > 0){                    
+                    document.getElementById('teloffice').value = cookieTelOffice;
                 }
-                if(cookieStreet){
+                if(cookieStreet && cookieStreet.length > 0){
                     document.getElementById('street').value = cookieStreet;
                 }
-                if(cookieCity){
+                if(cookieCity && cookieCity.length > 0){
                     document.getElementById('city').value = cookieCity;
                 }
-                if(cookieState){
+                if(cookieState && cookieState.length > 0){
                     document.getElementById('state').value = cookieState;
-                }
-                    
-                
-
-
+                }                              
             });
 
         </script>

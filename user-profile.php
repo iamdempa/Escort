@@ -42,21 +42,17 @@
 
     </head>
     <body>
+        <!--changing the local storage values-->
+        <script>
+            localStorage.setItem("cookieEmail", "");
+            localStorage.setItem("cookieTel", "");
+            localStorage.setItem("cookieTelOffice", "");
+            localStorage.setItem("cookieStreet", "");
+            localStorage.setItem("cookieCity", "");
+            localStorage.setItem("cookieState", "");
+        </script>
+        
         <?php
-        unset($_COOKIE['cookieEmail']);
-        unset($_COOKIE['cookieTel']);
-        unset($_COOKIE['cookieTelOffice']);
-        unset($_COOKIE['cookieStreet']);
-        unset($_COOKIE['cookieCity']);
-        unset($_COOKIE['cookieState']);
-
-        setcookie("cookieEmail", "", time() - 3600);
-        setcookie("cookieTel", "", time() - 3600);
-        setcookie("cookieTelOffice", "", time() - 3600);
-        setcookie("cookieStreet", "", time() - 3600);
-        setcookie("cookieState", "", time() - 3600);
-        setcookie("cookieState", "", time() - 3600);
-
         if (isset($_GET['update']) == 'Success') {
             echo "<div class='alert mekata alert-success alert-dismissible fade show text-center' id='success-alert' role='alert'>
                 <strong>Profile Updated!</strong>
