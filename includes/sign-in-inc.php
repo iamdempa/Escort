@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['useremail'] = $row['useremail'];
                     $_SESSION['userid'] = $row['userid'];
 
-                    if ($email == "escortpersonaladz@gmail.com") {
+                        if ($email == "escortpersonaladz@gmail.com") {
                         $_SESSION['admin'] = "admin";
                         header("Location: ../AdminDashboard/index-admin.php?loginSuccess");
                     } else {

@@ -18,7 +18,7 @@ $resultAd = mysqli_query($conn, $sqlAd);
 $resultCheckAd = mysqli_num_rows($resultAd);
 $adCount = 0;
 if ($resultCheckAd < 1) {
-    echo 'No Ads';
+//    echo 'No Ads';
 } else {
     while ($row = mysqli_fetch_assoc($resultAd)) {
         $adCount++;
@@ -30,7 +30,7 @@ $resultService = mysqli_query($conn, $sqlService);
 $resultCheckService = mysqli_num_rows($resultService);
 $serviceCount = 0;
 if ($resultCheckService < 1) {
-    echo 'No Ads';
+//    echo 'No Ads';
 } else {
     while ($row = mysqli_fetch_assoc($resultService)) {
         $serviceCount++;
