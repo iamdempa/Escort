@@ -3,6 +3,21 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
+unset($_COOKIE['cookieEmail']);
+unset($_COOKIE['cookieTel']);
+unset($_COOKIE['cookieTelOffice']);
+unset($_COOKIE['cookieStreet']);
+unset($_COOKIE['cookieCity']);
+unset($_COOKIE['cookieState']);
+
+setcookie ("cookieEmail", "", time() - 3600);
+setcookie ("cookieTel", "", time() - 3600);
+setcookie ("cookieTelOffice", "", time() - 3600);
+setcookie ("cookieStreet", "", time() - 3600);
+setcookie ("cookieState", "", time() - 3600);
+setcookie ("cookieState", "", time() - 3600);
+
+
 if (!isset($_SESSION['username']) && empty($editAdId) && empty($_GET['postNewAd'])) {
     header("Location: sign-in.php");
     exit();

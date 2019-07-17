@@ -57,21 +57,23 @@ and open the template in the editor.
     </head>
 
     <body>
- <?php
-        $cookieEmail = $_COOKIE['cookieEmail'];
-        $cookieTel = $_COOKIE['cookieTel'];
-        $cookieTelOffice = $_COOKIE['cookieTelOffice'];
-        $cookieStreet = $_COOKIE['cookieStreet'];
-        $cookieCity = $_COOKIE['cookieCity'];
-        $cookieState = $_COOKIE['cookieState'];
+        <?php
+        if (isset($_COOKIE['cookieEmail'])) {
+            $cookieEmail = $_COOKIE['cookieEmail'];
+            $cookieTel = $_COOKIE['cookieTel'];
+            $cookieTelOffice = $_COOKIE['cookieTelOffice'];
+            $cookieStreet = $_COOKIE['cookieStreet'];
+            $cookieCity = $_COOKIE['cookieCity'];
+            $cookieState = $_COOKIE['cookieState'];
 
 
-        echo "<script>console.log( '" . $cookieEmail . "' );</script>";
-        echo "<script>console.log( '" . $cookieTel . "' );</script>";
-        echo "<script>console.log( '" . $cookieTelOffice . "' );</script>";
-        echo "<script>console.log( '" . $cookieStreet . "' );</script>";
-        echo "<script>console.log( '" . $cookieCity . "' );</script>";
-        echo "<script>console.log( '" . $cookieState . "' );</script>";
+            echo "<script>console.log( '" . $cookieEmail . "' );</script>";
+            echo "<script>console.log( '" . $cookieTel . "' );</script>";
+            echo "<script>console.log( '" . $cookieTelOffice . "' );</script>";
+            echo "<script>console.log( '" . $cookieStreet . "' );</script>";
+            echo "<script>console.log( '" . $cookieCity . "' );</script>";
+            echo "<script>console.log( '" . $cookieState . "' );</script>";
+        }
         ?>
         <?php
         include_once './includes/header.php';
@@ -142,19 +144,11 @@ and open the template in the editor.
                                     <div class='phone-feedback'></div>
                                 </div>";
                                         } else {
-                                            if (isset($_COOKIE['cookieTel'])) {
-                                                echo "<div class='form-group'>
-                                    <label for='tel' class='col-form-label'><i class='fa fa-mobile-phone'></i> Mobile</label>
-                                    <input type='text' name='mobile' value='" . $_COOKIE['cookieTel'] . "' class='form-control' id='tel' placeholder='+94 6 99 99 99 99'>
-                                    <div class='phone-feedback'></div>
-                                </div>";
-                                            } else {
-                                                echo "<div class='form-group'>
+                                            echo "<div class='form-group'>
                                     <label for='tel' class='col-form-label'><i class='fa fa-mobile-phone'></i> Mobile</label>
                                     <input type='text' name='mobile' class='form-control' id='tel' placeholder='+94 6 99 99 99 99'>
                                     <div class='phone-feedback'></div>
                                 </div>";
-                                            }
                                         }
 
                                         if (!empty($row['adcontactoffice'])) {
@@ -165,21 +159,11 @@ and open the template in the editor.
                                 </div>";
                                         } else {
 
-                                            if (isset($_COOKIE['cookieTelOffice'])) {
-                                                
-                                                echo "<div class='form-group'>
-                                    <label for='tel' class='col-form-label'><i class='fa fa-building'></i> Company</label>
-                                    <input type='text' name='office' value='" . $_COOKIE['cookieTelOffice'] . "' class='form-control' id='teloffice' placeholder='+94 1 23 45 67 89'>
-                                    <div class='phone-feedback'></div>
-                                </div>";
-                                            } else {
-                                                
-                                                echo "<div class='form-group'>
+                                            echo "<div class='form-group'>
                                     <label for='tel' class='col-form-label'><i class='fa fa-building'></i> Company</label>
                                     <input type='text' name='office' class='form-control' id='teloffice' placeholder='+94 1 23 45 67 89'>
                                     <div class='phone-feedback'></div>
                                 </div>";
-                                            }
                                         }
 
                                         if (!empty($row['adstreet'])) {
@@ -190,19 +174,11 @@ and open the template in the editor.
                                 </div>";
                                         } else {
 
-                                            if (isset($_COOKIE['cookieStreet'])) {
-                                                echo "<div class='form-group'>
-                                    <label for='street' class='col-form-label'> Street</label>
-                                    <input type='text' name='street' class='form-control' id='street' value='" . $_COOKIE['cookieStreet'] . "'>
-                                    <div class='phone-feedback'></div>
-                                </div>";
-                                            } else {
-                                                echo "<div class='form-group'>
+                                            echo "<div class='form-group'>
                                     <label for='street' class='col-form-label'> Street</label>
                                     <input type='text' name='street' class='form-control' id='street'>
                                     <div class='phone-feedback'></div>
                                 </div>";
-                                            }
                                         }
 
                                         if (!empty($row['adcity'])) {
@@ -212,19 +188,11 @@ and open the template in the editor.
                                     <div class='phone-feedback'></div>
                                 </div>";
                                         } else {
-                                            if (isset($_COOKIE['cookieCity'])) {
-                                                echo "<div class='form-group'>
-                                    <label for='city' class='col-form-label'> City</label>
-                                    <input type='text' name='city' class='form-control' id='city' value='" . $_COOKIE['cookieCity'] . "'>
-                                    <div class='phone-feedback'></div>
-                                </div>";
-                                            } else {
-                                                echo "<div class='form-group'>
+                                            echo "<div class='form-group'>
                                     <label for='city' class='col-form-label'> City</label>
                                     <input type='text' name='city' class='form-control' id='city'>
                                     <div class='phone-feedback'></div>
                                 </div>";
-                                            }
                                         }
 
                                         if (!empty($row['adstate'])) {
@@ -234,19 +202,11 @@ and open the template in the editor.
                                     <div class='phone-feedback'></div>
                                 </div>";
                                         } else {
-                                            if (isset($_COOKIE['cookieState'])) {
-                                                echo "<div class='form-group'>
-                                    <label for='state' class='col-form-label'> State</label>
-                                    <input type='text' name='state' class='form-control' id='state' value='" . $_COOKIE['cookieState'] . "'>
-                                    <div class='phone-feedback'></div>
-                                </div>";
-                                            } else {
-                                                echo "<div class='form-group'>
+                                            echo "<div class='form-group'>
                                     <label for='state' class='col-form-label'> State</label>
                                     <input type='text' name='state' class='form-control' id='state'>
                                     <div class='phone-feedback'></div>
                                 </div>";
-                                            }
                                         }
                                     }
                                 } else {
@@ -583,24 +543,67 @@ and open the template in the editor.
                 }
             });
         </script>
-        
+
         <script>
             function setCookies() {
-                var cookieEmiail = document.getElementById("email").value;
+
+                var cookieEmail = document.getElementById("email").value;
                 var cookieTel = document.getElementById("tel").value;
                 var cookieTelOffice = document.getElementById("teloffice").value;
                 var cookieStreet = document.getElementById("street").value;
                 var cookieCity = document.getElementById("city").value;
                 var cookieState = document.getElementById("state").value;
 
-                document.cookie = "cookieEmail = " + cookieEmiail;
-                document.cookie = "cookieTel = " + cookieTel;
-                document.cookie = "cookieTelOffice = " + cookieTelOffice;
-                document.cookie = "cookieStreet = " + cookieStreet;
-                document.cookie = "cookieCity = " + cookieCity;
-                document.cookie = "cookieState = " + cookieState;
+//                document.cookie = "cookieEmail = " + cookieEmiail;
+//                document.cookie = "cookieTel = " + cookieTel;
+//                document.cookie = "cookieTelOffice = " + cookieTelOffice;
+//                document.cookie = "cookieStreet = " + cookieStreet;
+//                document.cookie = "cookieCity = " + cookieCity;
+//                document.cookie = "cookieState = " + cookieState;
+
+                localStorage.setItem("cookieEmail", cookieEmail);
+                localStorage.setItem("cookieTel", cookieTel);
+                localStorage.setItem("cookieTelOffice", cookieTelOffice);
+                localStorage.setItem("cookieStreet", cookieStreet);
+                localStorage.setItem("cookieCity", cookieCity);
+                localStorage.setItem("cookieState", cookieState);
+
+
             }
         </script>
+        <script>
+            $(document).ready(function () {
+
+                var cookieTel = localStorage.getItem("cookieTel");
+                var cookieTelOffice = localStorage.getItem("cookieTelOffice");
+                var cookieStreet = localStorage.getItem("cookieStreet");
+                var cookieCity = localStorage.getItem("cookieCity");
+                var cookieState = localStorage.getItem("cookieState");
+                                    
+                if (cookieTel) {
+                    document.getElementById('tel').value = cookieTel;
+                }
+                if(cookieTelOffice){
+                    document.getElementById('telOffice').value = cookieTel;
+                }
+                if(cookieStreet){
+                    document.getElementById('street').value = cookieStreet;
+                }
+                if(cookieCity){
+                    document.getElementById('city').value = cookieCity;
+                }
+                if(cookieState){
+                    document.getElementById('state').value = cookieState;
+                }
+                    
+                
+
+
+            });
+
+        </script>
+
+
 
         <script type="text/javascript">
 
@@ -688,7 +691,7 @@ and open the template in the editor.
             }
         </script>
 
-        
+
 
         <script type="text/javascript">
 
@@ -724,6 +727,7 @@ and open the template in the editor.
 
                 //set the cookies
                 setCookies();
+
 
                 $('#' + progressBarId).css('width', '0');
                 $('#' + msgId).text('');
@@ -764,6 +768,7 @@ and open the template in the editor.
                     },
                     success: function (php_script_response) {
 //                        alert(php_script_response); // display response from the PHP script, if any
+                        setCookies();
 
                         if (php_script_response === "" || php_script_response.length === 0) {
 
@@ -869,7 +874,7 @@ and open the template in the editor.
 
         </script>
 
-       
+
 
 
 

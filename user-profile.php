@@ -33,7 +33,7 @@
         <link href="css/user-profile/user-profile-custom.css" rel="stylesheet">
         <!--<link href="css/main/font-awesome.min.css" rel="stylesheet">-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-        
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
 
@@ -43,6 +43,20 @@
     </head>
     <body>
         <?php
+        unset($_COOKIE['cookieEmail']);
+        unset($_COOKIE['cookieTel']);
+        unset($_COOKIE['cookieTelOffice']);
+        unset($_COOKIE['cookieStreet']);
+        unset($_COOKIE['cookieCity']);
+        unset($_COOKIE['cookieState']);
+
+        setcookie("cookieEmail", "", time() - 3600);
+        setcookie("cookieTel", "", time() - 3600);
+        setcookie("cookieTelOffice", "", time() - 3600);
+        setcookie("cookieStreet", "", time() - 3600);
+        setcookie("cookieState", "", time() - 3600);
+        setcookie("cookieState", "", time() - 3600);
+
         if (isset($_GET['update']) == 'Success') {
             echo "<div class='alert mekata alert-success alert-dismissible fade show text-center' id='success-alert' role='alert'>
                 <strong>Profile Updated!</strong>
@@ -162,8 +176,8 @@
             });
         </script>
 
-        
-        
+
+
 
 
 
@@ -177,11 +191,11 @@
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="js/main/holder.min.js"></script>
         <script src="js/main/jquery.js"></script>
-        
-        
-        
+
+
+
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-        
+
 
 
     </body>
