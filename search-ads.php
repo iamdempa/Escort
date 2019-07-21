@@ -21,7 +21,9 @@
         }
 
         $keyword = $_GET['keyword'];
-        $userId = $_SESSION['userid'];
+        if(isset($_SESSION['userid'])){
+            $userId = $_SESSION['userid'];
+        }        
         if (!isset($keyword)) {
             header("Location: index.php");
             exit();
@@ -164,8 +166,11 @@
             }
 
             $keyword = $_GET['keyword'];
-            $userId = $_SESSION['userid'];
+            if(isset($_SESSION['userid'])){
+                $userId = $_SESSION['userid'];
 
+            }
+            
             $numberOfPages = ceil($numOfResults / $resultPerPage);
 //            echo "Number of Results: " . $numOfResults . "</br>";
 //            echo "Results  per page: " . $resultPerPage . "</br>";
@@ -181,7 +186,7 @@
         }
 
         //to show ads by the user
-        function showAdImages($userIdd, $conn) {
+        function showAdImages($conn) {
 
             //if user clicked search from the index page
             if (empty($_GET['service']) || empty($_GET['country'])) {
@@ -240,19 +245,19 @@
             $thisPageFirstResult = ($page - 1) * $resultPerPage;
 
             if($service == "all" && $country == "all"){
-                $sql = "SELECT * FROM ad WHERE userid=? AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+                $sql = "SELECT * FROM ad WHERE adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
             
             if($service == "all" && $country != "all"){
-                $sql = "SELECT * FROM ad WHERE userid=? AND countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+                $sql = "SELECT * FROM ad WHERE countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
             
             if($service != "all" && $country == "all"){
-                $sql = "SELECT * FROM ad WHERE userid=? AND serviceid='$service' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+                $sql = "SELECT * FROM ad WHERE serviceid='$service' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
             
             if($service != "all" && $country != "all"){
-                $sql = "SELECT * FROM ad WHERE userid=? AND serviceid='$service' AND countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
+                $sql = "SELECT * FROM ad WHERE serviceid='$service' AND countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
             
         
@@ -265,7 +270,7 @@
                 echo 'error';
             } else {
                 $success = "pending";
-                mysqli_stmt_bind_param($stmt, "isss", $userIdd, $keywordd, $keywordd, $keywordd);
+                mysqli_stmt_bind_param($stmt, "sss", $keywordd, $keywordd, $keywordd);
                 mysqli_stmt_execute($stmt);
 
                 $result = mysqli_stmt_get_result($stmt);
@@ -291,7 +296,7 @@
                     echo "<tr>";
                     $adId = $row['adid'];
 //                    $sql2 = "SELECT * FROM adimage WHERE adid='$adId' AND userid='$userIdd' LIMIT 1;";
-                    $sql2 = "SELECT * FROM adimage WHERE adid='$adId' AND userid='$userIdd' LIMIT 1;";
+                    $sql2 = "SELECT * FROM adimage WHERE adid='$adId' LIMIT 1;";
 //                    echo $adId;
 
                     $resultImage = mysqli_query($conn, $sql2);
@@ -299,7 +304,7 @@
                         if ($rowImage['adimagestatus'] == 0) { //ad pic set
                             $fileName = "uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "*";
                             $fileInfo = glob($fileName);
-
+                            
                             $fileExt = explode(".", $fileInfo[0]);
                             $fileActualExt = $fileExt[1];
 
@@ -310,10 +315,10 @@
                             echo "<td class='text-left' style='width:100%;'>";
 
                             echo "<h3>";
-                            echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
+                            echo "<a class='card-link' href='view-ad.php?editAdId=".$rowImage['adid']."'>";
                             echo $row['adtitle'];
                             echo "</a>";
-                            echo "</h3>";
+                            echo "</h3>";                            
 
                             echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
@@ -428,7 +433,7 @@
             }
         }
 
-        showAdImages($userId, $conn);
+        showAdImages($conn);
         ?>
 
         <!--End of Showing ads-->
