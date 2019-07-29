@@ -148,7 +148,7 @@ and open the template in the editor.
                         <i class='fa fa-cog dropdown-toggle' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
                         
                         <div id='banuka' class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                          <a class='dropdown-item' href='view-ad.php?adid=" . $row['adid'] . "&userid=" . $row['userid'] . "&review=yes'><i class='fa fa-check'> Approve</i></a>                              
+                          <a class='dropdown-item' href='view-ad.php?adid=" . $row['adid'] . "&userid=" . $row['userid'] . "&review=yes'><i class='fa fa-thumbs-up'> Approve</i></a>                              
                           <a class='dropdown-item' href='../post-ad.php?editAdId=".$row['adid']."&userId=".$row['userid']."&updateByAdmin&declined=yes'><i class='fa fa-refresh'> Update</i></a>
                           <a class='dropdown-item' href='#'><i class='fa fa-remove'> Delete</i></a>                          
                         </div>

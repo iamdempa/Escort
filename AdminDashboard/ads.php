@@ -148,7 +148,7 @@ and open the template in the editor.
                 ?>
 
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="view-ad.php?adid=<?php echo $row['adid']; ?>&userid=<?php echo $row['userid']; ?>&view=yes"><i class="fa fa-trash"> Decline</i></a>                         
+                    <a class="dropdown-item" href="view-ad.php?adid=<?php echo $row['adid']; ?>&userid=<?php echo $row['userid']; ?>&view=yes"><i class="fa fa-thumbs-down"> Decline</i></a>                         
                     <a class="dropdown-item" href="#" onclick="showDeleteConfirm(this)" userid="<?php echo $row['userid']; ?>"  id=<?php echo $row['adid']; ?>><i class="fa fa-remove"> Delete</i></a>
                     <?php
                     echo "</div>

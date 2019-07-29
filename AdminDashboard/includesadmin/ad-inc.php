@@ -564,7 +564,7 @@ if (!mysqli_stmt_prepare($stmt, $sqlPartOne)) {
                 buttons: {
                     Approve: function () {
                         $.alert('Declined!');
-                        approve(id);
+                        declineAd(id);
                         setTimeout(function () {
                             window.location.href = "new-ads.php";
                         }, 2500);
@@ -576,7 +576,7 @@ if (!mysqli_stmt_prepare($stmt, $sqlPartOne)) {
             });
         }
 
-        function approve(id) {
+        function declineAd(id) {
             var adId = $(id).attr('id');
 
             $.ajax({
