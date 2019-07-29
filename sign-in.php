@@ -33,7 +33,7 @@ if (isset($_SESSION['username'])) {
 
     </head>
     <body>
-        
+
         <!--changing the local storage values-->
         <script>
             localStorage.setItem("cookieEmail", "");
@@ -43,9 +43,9 @@ if (isset($_SESSION['username'])) {
             localStorage.setItem("cookieCity", "");
             localStorage.setItem("cookieState", "");
         </script>
-        
+
         <div class="thetop"></div>
-        
+
 
         <?php
         if (isset($_GET['success'])) {
@@ -64,7 +64,7 @@ if (isset($_SESSION['username'])) {
               </div>";
         } else if (isset($_GET['loginNoData'])) {
             echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
-                <strong>Invalid Credentials!</strong> Make sure you enetered correct login credentials.
+                <strong>Invalid Credentials/Account is Banned!</strong> Make sure you enetered correct login credentials or send an email to unban your account.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                 </button>
@@ -102,9 +102,10 @@ if (isset($_SESSION['username'])) {
 
         <script type="text/javascript">
             window.setTimeout(function () {
-                $(".mekata").fadeTo(1000, 0).slideUp(1000, function () {
-                    $(this).hide();
-                });
+//                $(".mekata").fadeTo(1000, 0).slideUp(1000, function () {
+//                    $(this).hide();
+//                });
+                $(".mekata").show();
             }, 1000);
         </script>
 

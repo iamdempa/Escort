@@ -41,10 +41,10 @@ if (isset($_POST['submit'])) {
                         exit();
                     } else {
                         //insert data into login
-                        $sqlInsert = "INSERT INTO login(username,useremail,userpassword) VALUES('$name','$email','$hashPassword');";
+                        $sqlInsert = "INSERT INTO login(username,useremail,userpassword,isBanned) VALUES('$name','$email','$hashPassword','no');";
                         mysqli_query($conn, $sqlInsert);
                         //insert data into user
-                        $sqlInsertUser = "INSERT INTO user(userEmail,userUsername,userPassword) VALUES('$email','$name','$hashPassword');";
+                        $sqlInsertUser = "INSERT INTO user(userEmail,userUsername,userPassword, isBanned) VALUES('$email','$name','$hashPassword', 'no');";
 
 
                         mysqli_query($conn, $sqlInsertUser);

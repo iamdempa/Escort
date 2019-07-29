@@ -17,13 +17,14 @@ if (isset($_POST['submit'])) {
         header("Location: ../sign-in.php?loginEmpty");
         exit();
     } else {
-        $sql = "SELECT * FROM login WHERE useremail='$email'";
+        $sql = "SELECT * FROM login WHERE useremail='$email' AND isBanned='no'";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
         if ($resultCheck < 1) {
-            header("Location: ../sign-in.php?loginNoData");
+            header("Location: ../sign-in.php?loginNoData&account=banned");
             exit();
-        } else {
+        } else {                        
+            
             if ($row = mysqli_fetch_assoc($result)) {
                 //De-hashing the password
                 $hashedPasswordCheck = password_verify($password, $row['userpassword']);
@@ -38,11 +39,25 @@ if (isset($_POST['submit'])) {
                     $_SESSION['useremail'] = $row['useremail'];
                     $_SESSION['userid'] = $row['userid'];
 
-                        if ($email == "escortpersonaladz@gmail.com") {
-                        $_SESSION['admin'] = "admin";
-                        header("Location: ../AdminDashboard/index-admin.php?loginSuccess");
+                    if ($email == "escortpersonaladz@gmail.com") {
+                        if ($row['isBanned'] === "no") {
+                            $_SESSION['admin'] = "admin";
+                            header("Location: ../AdminDashboard/index-admin.php?loginSuccess");
+                            exit();
+                        } else {
+                            header("Location: ../sign-in.php?AdminAccount=banned");
+                            exit();
+                        }
                     } else {
-                        header("Location: ../user-profile.php?loginSuccess");
+                        
+                        if ($row['isBanned'] === "no") {                            
+                            header("Location: ../user-profile.php?loginSuccess");
+                            exit();
+                        } else {                              
+                            header("Location: ../sign-in.php?UserAccount=banned");
+                            exit();
+                        }
+                        
                     }
                 }
             }

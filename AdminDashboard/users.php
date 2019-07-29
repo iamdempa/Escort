@@ -13,7 +13,7 @@ and open the template in the editor.
         <link rel="stylesheet" href="cssadmin/style2.css">                  
 
         <?php include './includesadmin/stylesheets.php'; ?>
-        
+
     </head>
     <body>
         <?php
@@ -56,6 +56,7 @@ and open the template in the editor.
                                 <th>Last Name</th>                                                                       
                                 <th>Email</th>
                                 <th>Username</th>
+                                <th>Status</th>
                                 <th>Option</th>                                    
                             </tr>
                         </thead>
@@ -64,14 +65,15 @@ and open the template in the editor.
         if ($resultCheck < 1) {
             echo 'no data';
         } else {
-            while ($row = mysqli_fetch_assoc($result)) {
+            while ($row = mysqli_fetch_assoc($result)) {           
+
                 echo "<tr>";
                 echo "<td>";
                 echo $row['userid'];
                 echo "</td>";
 
-                echo "<td>";                
-                echo $row['userFName'];                
+                echo "<td>";
+                echo $row['userFName'];
                 echo "</td>";
 
                 echo "<td>";
@@ -86,6 +88,19 @@ and open the template in the editor.
                 echo $row['userUsername'];
                 echo "</td>";
 
+                if ($row['isBanned'] == "no") {
+                    echo "<td style='color: #0ac426;font-weight:bold'>";
+                    echo "Active";
+                    echo "</td>";
+                }else{
+                    echo "<td style='color: #f54272;font-weight:bold'>";
+                    echo "Banned";
+                    echo "</td>";
+                }
+
+
+
+
 
                 echo "<td>";
                 echo "<div class='dropdown'>
@@ -93,9 +108,7 @@ and open the template in the editor.
                         <i class='fa fa-cog dropdown-toggle' id='dropdownMenuButton' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'></i>
                         
                         <div class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
-                          <a class='dropdown-item' href='view-user.php?userid=".$row['userid']."'><i class='fa fa-eye'> View</i></a>
-                          <a class='dropdown-item' href='#'><i class='fa fa-refresh'> Update</i></a>
-                          <a class='dropdown-item' href='#'><i class='fa fa-remove'> Delete</i></a>
+                          <a class='dropdown-item' href='view-user.php?userid=" . $row['userid'] . "&isBanned=".$row['isBanned']."'><i class='fa fa-eye'> View</i></a>                          
                         </div>
                       </div>";
                 echo "</td>";
