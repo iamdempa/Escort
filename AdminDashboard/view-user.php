@@ -11,6 +11,7 @@ and open the template in the editor.
 
         <?php
         include './includesadmin/stylesheets.php';
+        include '../dbConnection.php';
         ?>
         
     </head>
@@ -26,6 +27,23 @@ and open the template in the editor.
                 <li class="breadcrumb-item active" aria-current="page">View Users</li>
             </ol>
         </nav>
+        
+        
+        <?php 
+            $sql = "SELECT * FROM user WHERE userid=?";
+            $stmt = mysqli_stmt_init($conn);
+            if(!mysqli_stmt_prepare($stmt, $sql)){
+                echo "error";
+            }else{
+                $userid = $_GET['userid'];                
+                mysqli_stmt_bind_param($stmt, "i", $userid);
+                mysqli_stmt_execute($stmt);
+                
+                $result = mysqli_stmt_get_result($stmt);
+                $resultCheck = mysqli_num_rows($result);
+                
+            }
+        ?>
 
         <?php
         include './includesadmin/header-admin2.php';
