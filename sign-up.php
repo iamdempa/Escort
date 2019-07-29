@@ -56,6 +56,13 @@ if (isset($_SESSION['username'])) {
                   <span aria-hidden='true'>&times;</span>
                 </button>
               </div>";
+        }else if(isset($_GET['invalidEmail'])){
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
+                <strong>Invalid Email!</strong> Enter a valid email.
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
         }
         ?>
 

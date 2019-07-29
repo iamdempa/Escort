@@ -47,6 +47,25 @@ if (isset($_SESSION['username'])) {
             </nav>
         </header>
 
+        <?php
+        if (!empty($_GET['newpw']) && isset($_GET['newpw']) && $_GET['newpw'] == 'pwnotsame') {
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
+                <strong>Password Doesn't match!</strong> Make sure you enter the same password.
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+        } else {
+            
+        }
+        ?>
+
+
+        <script type="text/javascript">
+            window.setTimeout(function () {
+            $(".mekata").show();
+        </script>
+
         <main role="main">
 
             <div class="container">
@@ -58,14 +77,13 @@ if (isset($_SESSION['username'])) {
 
 
                                 <?php
-                                $selector = $_GET["selector"];
-                                $validator = $_GET["validator"];
-
-                                if (empty($selector) || empty($validator)) {
+                                if (empty($_GET["selector"]) || empty($_GET["validator"])) {
 //                                    echo 'error';
                                 } else {
+                                    $selector = $_GET["selector"];
+                                    $validator = $_GET["validator"];
 //                                    echo 'success';
-                                    if (ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false) {                                       
+                                    if (ctype_xdigit($selector) !== false && ctype_xdigit($validator) !== false) {
                                         ?>
 
                                         <form class="form-signin" action="includes/create-new-password-inc.php" method="POST">    
@@ -88,7 +106,7 @@ if (isset($_SESSION['username'])) {
                                         </form>
 
                                         <?php
-                                    }else{
+                                    } else {
                                         echo '2';
                                     }
                                 }
@@ -132,33 +150,31 @@ if (isset($_SESSION['username'])) {
 
         <!--Back to top-->
         <script type="text/javascript">
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 50) {
-                    $('.scrolltop:hidden').stop(true, true).fadeIn();
-                } else {
-                    $('.scrolltop').stop(true, true).fadeOut();
-                }
+                    $(window).scroll(function () {
+            if ($(this).scrollTop() > 50) {
+            $('.scrolltop:hidden').stop(true, true).fadeIn();
+            } else {
+            $('.scrolltop').stop(true, true).fadeOut();
+            }
             });
-            $(function () {
-                $(".scroll").click(function () {
+                    $(function () {
+                    $(".scroll").click(function () {
                     $("html,body").animate({scrollTop: $(".thetop").offset().top}, "1000");
-                    return false
-                });
-            });
-
-            $(function () {
-                $(".see-more-ads").click(function () {
+                            return false
+                    });
+                    });
+                    $(function () {
+                    $(".see-more-ads").click(function () {
                     $("html,body").animate({scrollTop: $(".see-more-ads-here").offset().top}, "1000");
-                    return false
-                });
-            });
-
-            $(function () {
-                $(".post-an-add").click(function () {
+                            return false
+                    });
+                    });
+                    $(function () {
+                    $(".post-an-add").click(function () {
                     $("html,body").animate({scrollTop: $(".thetop").offset().top}, "1000");
-                    return false
-                });
-            });
+                            return false
+                    });
+                    });
         </script>
 
     </body>

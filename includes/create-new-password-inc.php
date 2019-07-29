@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../create-new-password.php?newpw=empty");
         exit();
     } else if ($newPassword != $confirmNewPassword) {
-        header("Location: ../create-new-password.php?newpw=pwnotsame");
+        header("Location: ../create-new-password.php?newpw=pwnotsame&selector=$selector&validator=$validator");
         exit();
     }
 
