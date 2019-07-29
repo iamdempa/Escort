@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 if (isset($_POST['submit'])) {
 
     $selector = bin2hex(random_bytes(8));
@@ -92,3 +92,4 @@ if (isset($_POST['submit'])) {
 } else {
     header("Location: ../sign-in.php");
 }
+ob_end_flush();

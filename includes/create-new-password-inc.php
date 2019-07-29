@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 if (isset($_POST['submit'])) {
 
     $selector = $_POST["selector"];
@@ -83,4 +83,5 @@ if (isset($_POST['submit'])) {
     header("Location: ../sign-in.php");
     exit();
 }
+ob_end_flush();
     

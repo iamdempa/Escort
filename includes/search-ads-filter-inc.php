@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -21,3 +21,4 @@ if (isset($_POST['submit'])) {
 } else {
     echo 'error';
 }
+ob_end_flush();

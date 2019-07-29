@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 include_once './dbConnection.php';
 $adId = mysqli_real_escape_string($conn, filter_input(INPUT_POST, "adId"));
 $userId = mysqli_real_escape_string($conn, filter_input(INPUT_POST, "userId"));
@@ -41,3 +41,4 @@ if (!mysqli_stmt_prepare($stmt, $sql)) {
     $sql = "DELETE FROM adimage WHERE adid='$adId'";
     mysqli_query($conn, $sql);
 }
+ob_end_flush();

@@ -1,5 +1,5 @@
 <?php
-
+ob_start();
 include_once './dbConnection.php';
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -51,5 +51,6 @@ if (isset($userId) && isset($adId) && isset($imgeName)) {
         exit();
     }
 }
+ob_end_flush();
 
 
