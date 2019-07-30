@@ -10,7 +10,7 @@ and open the template in the editor.
         <title>Users - Escort Admin Panel</title>
 
         <?php
-        include './includesadmin/javascript-sheets.php';
+//        include './includesadmin/javascript-sheets.php';
         include '../dbConnection.php';
         ?>
 
