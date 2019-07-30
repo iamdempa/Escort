@@ -7,11 +7,6 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-
-
-
-
-
         <?php
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
