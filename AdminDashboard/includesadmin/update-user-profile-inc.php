@@ -1,5 +1,6 @@
 <?php
 
+
 session_start();
 
 
@@ -149,7 +150,7 @@ if (isset($_POST['submit'])) {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         } else {
-            session_destroy();
+            //session_destroy();
         }
 
         header("Location: ../view-user.php?update=Success&userid=$selectedUserID");

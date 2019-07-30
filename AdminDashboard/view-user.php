@@ -20,9 +20,11 @@ and open the template in the editor.
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        unset($_SESSION['selectedUserID']);
+        
         include './includesadmin/header-admin.php';
 
-        unset($_SESSION['selectedUserID']);
+        
         ?>
 
 
