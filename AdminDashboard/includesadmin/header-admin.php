@@ -29,13 +29,20 @@ if (isset($_SESSION['username']) || isset($_SESSION['userid'])) {
     $resultCheck2 = mysqli_num_rows($result2);
 
     if ($resultCheck2 < 1) {
-        echo "no results";
-    } else {       
+//        echo "no results";
+    } else {
         while ($row = mysqli_fetch_assoc($result2)) {
             if ($row['isBanned'] == "yes") {
-//                header("Location: ./users.php?isBanned=yes");
+
+                $helper = array_keys($_SESSION);
+                foreach ($helper as $key) {
+                    unset($_SESSION[$key]);
+                }
+                header("Location: ../sign-in.php?isBanned=yes");
                 exit();
-            } 
+            } else {
+                echo $row['isBanned'];
+            }
         }
     }
 } else {
