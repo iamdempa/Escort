@@ -10,6 +10,7 @@
 
 
         $userIdd = $_SESSION['userid'];
+//        echo $userIdd;
 
         $sqlImg = "SELECT * FROM profileimage WHERE userid='$userIdd'";
 
@@ -101,7 +102,7 @@
 
             $sql2 = "SELECT * FROM ad WHERE userid=?";
 
-            $success = "pending";
+//            $success = "pending";
 
             $stmt2 = mysqli_stmt_init($conn);
             mysqli_stmt_prepare($stmt2, $sql2);
@@ -128,7 +129,7 @@
             if (!mysqli_stmt_prepare($stmt, $sql)) {
                 echo 'error';
             } else {
-                $success = "pending";
+//                $success = "pending";
                 mysqli_stmt_bind_param($stmt, "i", $userIdd);
                 mysqli_stmt_execute($stmt);
 
@@ -172,13 +173,19 @@
                             echo "<a class='btn btn-danger btn-sm delete' href='#' id='" . $adId . "' onclick='showDeleteConfirm(this)' role='button'>Delete</a>";
                             echo"</td>";
 
-                            echo "<td>";
                             if ($row['adstatus'] == "pending") {
+                                echo "<td>";
                                 echo 'pending';
-                            } else {
-                                echo 'Approved';
+                                echo"</td>";
+                            } else if($row['adstatus'] == "declined") {
+                                echo "<td style='color:#f54272'>";
+                                echo $row['adstatus'];
+                                echo"</td>";                                
+                            }else if($row['adstatus'] == "success"){
+                                echo "<td style='color:#0ac426'>";
+                                echo $row['adstatus'];
+                                echo"</td>";
                             }
-                            echo"</td>";
 
                             echo "</tr>";
                         } else { //profile pic not set
@@ -197,13 +204,21 @@
                             echo "<a class='btn btn-danger btn-sm delete' href='#' id='" . $adId . "' onclick='showDeleteConfirm(this)' role='button'>Delete</a>";
                             echo"</td>";
 
-                            echo "<td>";
+                            
                             if ($row['adstatus'] == "pending") {
+                                echo "<td>";
                                 echo 'pending';
-                            } else {
-                                echo 'Approved';
+                                echo"</td>";
+                            } else if($row['adstatus'] == "declined") {
+                                echo "<td style='color:#f54272'>";
+                                echo $row['adstatus'];
+                                echo"</td>";                                
+                            }else if($row['adstatus'] == "success"){
+                                echo "<td style='color:#0ac426'>";
+                                echo $row['adstatus'];
+                                echo"</td>";
                             }
-                            echo"</td>";
+                            
 
                             echo "</tr>";
                         }
@@ -294,6 +309,7 @@
                 </div>";
 
                 $sql = "SELECT * FROM user WHERE userid='$userIdd'";
+                
 
                 $result = mysqli_query($conn, $sql);
 

@@ -41,7 +41,7 @@ and open the template in the editor.
         </div>
 
         <?php
-        $sql = "SELECT * FROM user;";
+        $sql = "SELECT * FROM user WHERE usertype='normal';";
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
@@ -89,11 +89,11 @@ and open the template in the editor.
                 echo "</td>";
 
                 if ($row['isBanned'] == "no") {
-                    echo "<td style='color: #0ac426;font-weight:bold'>";
+                    echo "<td style='color: #0ac426;font-weight:bold;'>";
                     echo "Active";
                     echo "</td>";
                 }else{
-                    echo "<td style='color: #f54272;font-weight:bold'>";
+                    echo "<td style='color: #f54272;font-weight:bold;'>";
                     echo "Banned";
                     echo "</td>";
                 }

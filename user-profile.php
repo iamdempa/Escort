@@ -15,12 +15,30 @@
         <?php
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
-            if (isset($_SESSION['username'])) {
-                //header("Location: ./user-profile.php");
-                echo "<title>" . $_SESSION['username'] . " - Escort Personal Adz</title>";
+        }
+        if (isset($_SESSION['username'])) {
+            
+            //header("Location: ./user-profile.php");
+            include './dbConnection.php';
+            echo "<title>" . $_SESSION['username'] . " - Escort Personal Adz</title>";
+            $loggedUserID = $_SESSION['userid'];
+            $sql = "SELECT * FROM user WHERE userid=$loggedUserID";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+            if ($resultCheck < 1) {
+                
             } else {
-                header("Location: index.php");
+                if ($row = mysqli_fetch_assoc($result)) {
+                    if ($row['isBanned'] == "yes") {
+                        unset($_SESSION['username']);
+                        unset($_SESSION['userid']);
+                        header("Location: index.php");
+                    }
+                }
             }
+        } else {
+            header("Location: index.php");
         }
         ?>
 
@@ -51,7 +69,7 @@
             localStorage.setItem("cookieCity", "");
             localStorage.setItem("cookieState", "");
         </script>
-        
+
         <?php
         if (isset($_GET['update']) == 'Success') {
             echo "<div class='alert mekata alert-success alert-dismissible fade show text-center' id='success-alert' role='alert'>

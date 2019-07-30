@@ -2,7 +2,7 @@
 
 session_start();
 $userId = $_SESSION['userid'];
-echo 'User id ' . $userId;
+//echo 'User id ' . $userId;
 
 if (isset($_POST['submit'])) {
 

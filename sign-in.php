@@ -76,23 +76,30 @@ if (isset($_SESSION['username'])) {
                   <span aria-hidden='true'>&times;</span>
                 </button>
               </div>";
-        } elseif (isset($_GET['update']) == "SuccessLoginAgain") {
+        } else if (isset($_GET['update']) == "SuccessLoginAgain") {
             echo "<div class='alert mekata alert-success alert-dismissible fade show text-center' role='alert'>
                 <strong>Profile Updated!</strong> Login into your account.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                 </button>
               </div>";
-        } elseif (isset($_GET['reset']) == "success") {
+        } else if (isset($_GET['reset']) == "success") {
             echo "<div class='alert mekata alert-success alert-dismissible fade show text-center' role='alert'>
                 <strong>Password Reset Successful!</strong> Login into your account with the new password.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                 </button>
               </div>";
-        } elseif (isset($_GET['PostAnAd'])) {
+        } else if (isset($_GET['PostAnAd']) || isset ($_GET['AdminLoginFirst'])) {
             echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
                 <strong>Login Required!</strong> Log in to your account to post an Ad.
+                <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+                  <span aria-hidden='true'>&times;</span>
+                </button>
+              </div>";
+        }else if(isset ($_GET['isBanned'])){
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
+                <strong>Account is Banned!</strong> Contact us if this happened mistakenly.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                 </button>

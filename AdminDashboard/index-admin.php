@@ -1,5 +1,10 @@
 <?php
 include_once './includesadmin/dbConnection.php';
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+
 
 $sql = "SELECT * FROM user;";
 $result = mysqli_query($conn, $sql);

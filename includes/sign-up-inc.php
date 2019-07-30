@@ -41,10 +41,10 @@ if (isset($_POST['submit'])) {
                         exit();
                     } else {
                         //insert data into login
-                        $sqlInsert = "INSERT INTO login(username,useremail,userpassword,isBanned) VALUES('$name','$email','$hashPassword','no');";
+                        $sqlInsert = "INSERT INTO login(username,useremail,userpassword,isBanned,userType) VALUES('$name','$email','$hashPassword','no','normal');";
                         mysqli_query($conn, $sqlInsert);
                         //insert data into user
-                        $sqlInsertUser = "INSERT INTO user(userEmail,userUsername,userPassword, isBanned) VALUES('$email','$name','$hashPassword', 'no');";
+                        $sqlInsertUser = "INSERT INTO user(userEmail,userUsername,userPassword, isBanned, userType) VALUES('$email','$name','$hashPassword', 'no', 'normal');";
 
 
                         mysqli_query($conn, $sqlInsertUser);
@@ -57,7 +57,8 @@ if (isset($_POST['submit'])) {
                             echo 'ok';
                             while ($row = mysqli_fetch_assoc($result)) {
                                 $userId = $row['userid'];
-
+                                
+                                //insert into profile image database
                                 $sqlInsertProfileImg = "INSERT INTO profileimage(userid,profileImageStatus) VALUES('$userId',1);";
                                 mysqli_query($conn, $sqlInsertProfileImg);
                                 echo 'success';

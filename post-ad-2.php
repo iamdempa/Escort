@@ -25,6 +25,9 @@ if (isset($_GET['updatePartOne']) == "yes" && isset($_GET['newAd']) == "yes") { 
 
     $adId = $_SESSION['editAdId'];
     echo 'THREE';
+} else if(isset($_GET['updatePartOne']) == "yes" && isset($_GET['emoerror'])){
+    $adId = $_SESSION['adid'];
+    echo 'Four';
 }
 ?>
 

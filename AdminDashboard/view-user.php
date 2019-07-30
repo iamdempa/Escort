@@ -155,12 +155,25 @@ and open the template in the editor.
                                     <div class='form-group row'>
                                         <label class='col-lg-3 col-form-label form-control-label'></label>
                                         <div class='col-lg-9'>                                                                                        
-                                            <button type='button' class='btn btn-success' onclick="hi(this)" selecteduserid="<?php echo $_SESSION['selectedUserID']; ?>" value='Ban Account'><i class = 'fa fa-unlock'></i> Unban Account</button>
+                                            <button type='button' class='btn btn-success' onclick="unBanAccount(this)" selecteduserid="<?php echo $_SESSION['selectedUserID']; ?>" value='Ban Account'><i class = 'fa fa-unlock'></i> Unban Account</button>
                                             <button type='button' class='btn btn-danger' value='Delete Account'><i class = 'fa fa-trash'></i> Delete Account</button>
                                         </div>
                                     </div>
                                     <?php
                                 }
+                            } else {
+                                ?>
+                                <div class='form-group row'>
+                                    <label class='col-lg-3 col-form-label form-control-label'></label>
+                                    <div class='col-lg-9'>
+                                        <button type='reset' class='btn btn-warning' value='Cancel'><i class = 'fa fa-times-circle'></i> Reset</button>
+                                        <button type='submit' name='submit' class='btn btn-success' value='Save Changes'><i class = 'fa fa-save'></i> Update</button>
+
+                                        <button type='button' class='btn btn-warning' onclick="banAccount(this)" selecteduserid="<?php echo $_SESSION['selectedUserID']; ?>" value='Ban Account'><i class = 'fa fa-ban'></i> Ban Account</button>
+                                        <button type='button' class='btn btn-danger' value='Delete Account'><i class = 'fa fa-trash'></i> Delete Account</button>
+                                    </div>
+                                </div>
+                                <?php
                             }
                             ?>
 
@@ -175,6 +188,43 @@ and open the template in the editor.
             }
         }
         ?>
+        
+        <script type="text/javascript">
+            function unBanAccount(selectedUserId) {
+                $.confirm({
+                    title: 'Unban Account!',
+                    content: 'Confirm Unban Account?',
+                    theme: 'material', // 'material', 'bootstrap'
+                    buttons: {
+                        Approve: function () {
+                            $.alert('Unbanned!');
+                            unBan(selectedUserId);
+                            setTimeout(function () {
+                                window.location.href = "users.php";
+                            }, 2500);
+                        },
+                        cancel: function () {
+
+                        }
+                    }
+                });
+            }
+
+            function unBan(selectedUserId) {
+                var selectedUserID = $(selectedUserId).attr('selecteduserid');
+                $.ajax({
+                    url: 'includesadmin/unban-account.php',
+                    dataType: 'text', // what to expect back from the PHP script, if anything                        
+                    data: {
+                        selectedUserID: selectedUserID
+                    },
+                    type: 'post',
+                    success: function (php_script_response) {
+//                        alert(php_script_response); // display response from the PHP script, if any
+                    }
+                });
+            }
+        </script>
 
         <script type="text/javascript">
             function banAccount(selectedUserId) {
@@ -198,18 +248,16 @@ and open the template in the editor.
             }
 
             function ban(selectedUserId) {
-                var adId = 'hey';
                 var selectedUserID = $(selectedUserId).attr('selecteduserid');
                 $.ajax({
-                    url: 'includesadmin/ban-ads.php',
+                    url: 'includesadmin/ban-account.php',
                     dataType: 'text', // what to expect back from the PHP script, if anything                        
                     data: {
-                        adId: adId,
-                        userId: selectedUserID
+                        selectedUserID: selectedUserID
                     },
                     type: 'post',
                     success: function (php_script_response) {
-                        alert(php_script_response); // display response from the PHP script, if any
+//                        alert(php_script_response); // display response from the PHP script, if any
                     }
                 });
             }

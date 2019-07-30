@@ -21,19 +21,18 @@
         }
 
         $keyword = $_GET['keyword'];
-        if(isset($_SESSION['userid'])){
+        if (isset($_SESSION['userid'])) {
             $userId = $_SESSION['userid'];
-        }        
+        }
         if (!isset($keyword)) {
             header("Location: index.php");
             exit();
         } else {
-            if(strlen($keyword) > 0){
+            if (strlen($keyword) > 0) {
                 echo "<title>$keyword - Escort Search Ads</title>";
-            }else{
+            } else {
                 echo "<title>Search - Escort Search Ads</title>";
             }
-            
         }
         ?>
 
@@ -122,14 +121,14 @@
                                     <li class="nav-item px-6">                                    
                                         <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
                                         <div class="col-sm-12">
-                                            <?php 
-                                                if($keyword != "" || strlen($keyword) == 0 ){
-                                                   echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="'.$keyword.'" value="'.$keyword.'" aria-label="Search">';
-                                                }else{
-                                                    echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
-                                                }
+                                            <?php
+                                            if ($keyword != "" || strlen($keyword) == 0) {
+                                                echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="' . $keyword . '" value="' . $keyword . '" aria-label="Search">';
+                                            } else {
+                                                echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
+                                            }
                                             ?>
-                                                                        
+
                                         </div>
 
                                     </li>
@@ -166,11 +165,10 @@
             }
 
             $keyword = $_GET['keyword'];
-            if(isset($_SESSION['userid'])){
+            if (isset($_SESSION['userid'])) {
                 $userId = $_SESSION['userid'];
-
             }
-            
+
             $numberOfPages = ceil($numOfResults / $resultPerPage);
 //            echo "Number of Results: " . $numOfResults . "</br>";
 //            echo "Results  per page: " . $resultPerPage . "</br>";
@@ -178,7 +176,7 @@
             . "<ul class='pagination'>";
             if ($numberOfPages != 1) {
                 for ($page = 1; $page <= $numberOfPages; $page++) {
-                                        
+
                     echo "<li class='page-item'><a class='page-link' href='search-ads.php?keyword=$keyword&service=$service&country=$country&page=" . $page . "'>" . $page . "</a></li>";
                 }
                 echo "</ul></nav></div></div></div>";
@@ -200,27 +198,26 @@
             }
 
             $resultPerPage = 5;
-            $adStatus = "pending"; //CHANGE THIS TO success 
-
+            $adStatus = "success"; //CHANGE THIS TO success 
 //            $sql2 = "SELECT * FROM ad WHERE userid=?";
-            if($service == "all" && $country == "all"){
+            if ($service == "all" && $country == "all") {
                 $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
             }
-            if($service == "all" && $country != "all"){
+            if ($service == "all" && $country != "all") {
                 $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND countryid='$country' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
             }
-                
-            if($service != "all" && $country == "all"){
+
+            if ($service != "all" && $country == "all") {
                 $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND serviceid='$service' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
             }
-            
-            if($service != "all" && $country != "all"){
+
+            if ($service != "all" && $country != "all") {
                 $sql2 = "SELECT * FROM ad WHERE adstatus='$adStatus' AND serviceid='$service' AND countryid='$country' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )";
             }
-            
-                
-            
-            
+
+
+
+
 
             $success = "pending";
             $keywordd = "%{$_GET['keyword']}%";
@@ -244,24 +241,24 @@
 
             $thisPageFirstResult = ($page - 1) * $resultPerPage;
 
-            if($service == "all" && $country == "all"){
+            if ($service == "all" && $country == "all") {
                 $sql = "SELECT * FROM ad WHERE adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
-            
-            if($service == "all" && $country != "all"){
+
+            if ($service == "all" && $country != "all") {
                 $sql = "SELECT * FROM ad WHERE countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
-            
-            if($service != "all" && $country == "all"){
+
+            if ($service != "all" && $country == "all") {
                 $sql = "SELECT * FROM ad WHERE serviceid='$service' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
-            
-            if($service != "all" && $country != "all"){
+
+            if ($service != "all" && $country != "all") {
                 $sql = "SELECT * FROM ad WHERE serviceid='$service' AND countryid='$country' AND adstatus='$adStatus' AND ( adtitle LIKE ? OR addescription LIKE ? OR adcontactemail LIKE ? )  LIMIT  " . $thisPageFirstResult . "," . $resultPerPage . ";";
             }
-            
-        
-            
+
+
+
 
 
             $stmt = mysqli_stmt_init($conn);
@@ -283,13 +280,13 @@
                         <div class='col-4'>
                         
                         </div>";
-                        if($numOfResults2 < 1){ //no result
-                            echo "<div class='col-8' style='background: #f0f0f0; border-radius: 10px;margin-bottom:200px;'><h1>No ads found!</h1>";
-                        }else{ //has a result
-                            echo "<div class='col-8' style='background: #ffffff; border-radius: 10px;margin-bottom:200px;'>";
-                        }
-                                                                        
-                    
+                if ($numOfResults2 < 1) { //no result
+                    echo "<div class='col-8' style='background: #f0f0f0; border-radius: 10px;margin-bottom:200px;'><h1>No ads found!</h1>";
+                } else { //has a result
+                    echo "<div class='col-8' style='background: #ffffff; border-radius: 10px;margin-bottom:200px;'>";
+                }
+
+
                 echo "<table class='table'>                    
                     <tbody>";
                 while ($row = mysqli_fetch_assoc($result)) {
@@ -304,7 +301,7 @@
                         if ($rowImage['adimagestatus'] == 0) { //ad pic set
                             $fileName = "uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "*";
                             $fileInfo = glob($fileName);
-                            
+
                             $fileExt = explode(".", $fileInfo[0]);
                             $fileActualExt = $fileExt[1];
 
@@ -315,10 +312,10 @@
                             echo "<td class='text-left' style='width:100%;'>";
 
                             echo "<h3>";
-                            echo "<a class='card-link' href='view-ad.php?editAdId=".$rowImage['adid']."'>";
+                            echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
-                            echo "</h3>";                            
+                            echo "</h3>";
 
                             echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
@@ -399,24 +396,82 @@
                             echo"</td>";
 
                             echo "<td class='text-left' style='width:100%;'>";
+
                             echo "<h3>";
-                            echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "&userId=" . $userIdd . "'>";
+                            echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "'>";
                             echo $row['adtitle'];
                             echo "</a>";
                             echo "</h3>";
+
                             echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
                             echo "</h6>";
-                            echo"</td>";
 
-                            echo "<td>";
-                            if ($row['adstatus'] == "pending") {
-                                echo 'pending';
-                            } else {
-                                echo 'Approved';
+                            echo '<br>';
+
+                            $country = $row['countryid'];
+                            switch ($country) {
+                                case 1:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Sri Lanka</p>";
+                                    break;
+                                case 2:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> India</p>";
+                                    break;
+                                case 3:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Thailand</p>";
+                                    break;
+                                case 4:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Taiwan</p>";
+                                    break;
+                                case 5:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Indonesia</p>";
+                                    break;
+                                case 6:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Philippines</p>";
+                                    break;
+                                case 7:
+                                    echo "<p class='countryname'<i class='fa fa-flag'></i> >Malaysia</p>";
+                                    break;
+                                case 8:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Japan</p>";
+                                    break;
+                                case 9:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Australia</p>";
+                                    break;
+                                case 10:
+                                    echo "<p class='countryname'><i class='fa fa-flag'></i> Vietnam</p>";
+                                    break;
                             }
-                            echo"</td>";
 
+                            $service = $row['serviceid'];
+                            switch ($service) {
+                                case 1:
+                                    echo "<p class='servicename'><i class='fa fa-building'></i>Hotel</p>";
+                                    break;
+                                case 2:
+                                    echo "<p class='servicename'><i class='fa fa-building'></i> Restaurant</p>";
+                                    break;
+                                case 3:
+                                    echo "<p class='servicename'><i class='fa fa-building'></i> Annex</p>";
+                                    break;
+                                case 4:
+                                    echo "<p class='servicename'<i class='fa fa-building'></i>> Spa</p>";
+                                    break;
+                                case 5:
+                                    echo "<p class='servicename'><i class='fa fa-map'></i> Guide</p>";
+                                    break;
+                                case 6:
+                                    echo "<p class='servicename'><i class='fa fa-plane'></i> Tour</p>";
+                                    break;
+                                case 7:
+                                    echo "<p class='servicename'><i class='fa fa-umbrella'></i> Beach Boy</p>";
+                                    break;
+                                case 8:
+                                    echo "<p class='servicename'><i class='fa fa-car'></i> Escort</p>";
+                                    break;
+                            }
+
+                            echo"</td>";
                             echo "</tr>";
                         }
                     }
@@ -464,14 +519,14 @@
 
         </script>
 
-        <?php
-        if ($country !== "all") {
-            echo "<script type='text/javascript'>checkSelectOption({$country});</script>";
-        }
-        if ($service !== "all") {
-            echo "<script type='text/javascript'>checkSelectOptionService({$service});</script>";
-        }
-        ?>
+<?php
+if ($country !== "all") {
+    echo "<script type='text/javascript'>checkSelectOption({$country});</script>";
+}
+if ($service !== "all") {
+    echo "<script type='text/javascript'>checkSelectOptionService({$service});</script>";
+}
+?>
 
 
         <?php
@@ -492,9 +547,9 @@
 
         <hr class="style3">
 
-        <?php
-        include_once './includes/footer.php';
-        ?>
+<?php
+include_once './includes/footer.php';
+?>
 
 
 

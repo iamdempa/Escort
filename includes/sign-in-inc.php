@@ -23,8 +23,8 @@ if (isset($_POST['submit'])) {
         if ($resultCheck < 1) {
             header("Location: ../sign-in.php?loginNoData&account=banned");
             exit();
-        } else {                        
-            
+        } else {
+
             if ($row = mysqli_fetch_assoc($result)) {
                 //De-hashing the password
                 $hashedPasswordCheck = password_verify($password, $row['userpassword']);
@@ -38,26 +38,16 @@ if (isset($_POST['submit'])) {
                     $_SESSION['username'] = $row['username'];
                     $_SESSION['useremail'] = $row['useremail'];
                     $_SESSION['userid'] = $row['userid'];
+                    $_SESSION['isBanned'] = $row['isBanned'];
 
                     if ($email == "escortpersonaladz@gmail.com") {
-                        if ($row['isBanned'] === "no") {
-                            $_SESSION['admin'] = "admin";
-                            header("Location: ../AdminDashboard/index-admin.php?loginSuccess");
-                            exit();
-                        } else {
-                            header("Location: ../sign-in.php?AdminAccount=banned");
-                            exit();
-                        }
+
+                        $_SESSION['admin'] = "admin";
+                        header("Location: ../AdminDashboard/index-admin.php?loginSuccess");
+                        exit();
                     } else {
-                        
-                        if ($row['isBanned'] === "no") {                            
-                            header("Location: ../user-profile.php?loginSuccess");
-                            exit();
-                        } else {                              
-                            header("Location: ../sign-in.php?UserAccount=banned");
-                            exit();
-                        }
-                        
+                        header("Location: ../user-profile.php?loginSuccess");
+                        exit();
                     }
                 }
             }

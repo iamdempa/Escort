@@ -16,6 +16,32 @@ if ($resultCheck < 1) {
         $count++;
     }
 }
+
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (isset($_SESSION['username']) || isset($_SESSION['userid'])) {
+    $userid = $_SESSION['userid'];
+
+    $sql2 = "SELECT * FROM login WHERE userid=$userid";
+    $result2 = mysqli_query($conn, $sql2);
+    $resultCheck2 = mysqli_num_rows($result2);
+
+    if ($resultCheck2 < 1) {
+        echo "no results";
+    } else {
+        while ($row = mysqli_fetch_assoc($result2)) {
+            if ($row['isBanned'] == "yes") {
+                header("Location: ./users.php?isBanned=yes");
+                exit();
+            } 
+        }
+    }
+} else {
+    header("Location: ../sign-in.php?AdminLoginFirst");
+    exit();
+}
 ?>
 
 <!-- Left Panel -->
@@ -39,7 +65,15 @@ if ($resultCheck < 1) {
                 <h3 class="menu-title">Menu</h3><!-- /.menu-title -->
 
                 <li class="menu-item-has-children dropdown">
-                    <a href="./users.php" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-user"></i>USERS</a>
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="menu-icon fa fa-users"></i>Users</a>
+
+                    <ul class="sub-menu children dropdown-menu">                        
+
+                        <li><i class="menu-icon fa fa-key"></i><a href="./admins.php">Admins</a></li>
+
+                        <li><i class="menu-icon fa fa-user"></i><a href="users.php">Current Users</a></li>
+                    </ul>
+
                 </li>
 
                 <li class="menu-item-has-children dropdown">
@@ -49,7 +83,7 @@ if ($resultCheck < 1) {
                         <li><i class="menu-icon fa fa-bell"></i><a href="./new-ads.php"><span class="badge badge-danger"><?php echo $count; ?></span> New Ads</a></li>
 
                         <li><i class="menu-icon fa fa-check"></i><a href="./ads.php">Posted Ads</a></li>
-                        
+
                         <li><i class="menu-icon fa fa-trash"></i><a href="./declined-ads.php">Declined Ads</a></li>
                     </ul>
                 </li>
