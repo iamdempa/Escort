@@ -12,7 +12,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <title>New Ads - Escort Admin Panel</title>
         <?php include './includesadmin/stylesheets.php'; ?>
-        
+
 
     </head>
     <body>
@@ -40,7 +40,7 @@ and open the template in the editor.
                 </div>
             </div>
         </div>
-        
+
 
 
 
@@ -51,7 +51,13 @@ and open the template in the editor.
         $result = mysqli_query($conn, $sql);
         $resultCheck = mysqli_num_rows($result);
 
-        echo "<div class='container-fluid'>
+
+
+        if ($resultCheck < 1) {
+            echo "<div class='container-fluid text-center' style='margin-top:20px;'><h1>No new ads to display!</h1></div>";
+        } else {
+
+            echo "<div class='container-fluid'>
             <div class='row'>
                 <div class='col-12 col-md-12 col-sm-12'>                                                                                  
                     <table class='table table-bordered text-center table-hover'>
@@ -69,9 +75,6 @@ and open the template in the editor.
                         </thead>
                         <tbody>";
 
-        if ($resultCheck < 1) {
-//            echo 'no data';
-        } else {
             while ($row = mysqli_fetch_assoc($result)) {
                 echo "<tr>";
                 echo "<td>";
@@ -150,7 +153,7 @@ and open the template in the editor.
                         <div id='banuka' class='dropdown-menu' aria-labelledby='dropdownMenuButton'>
                           <a class='dropdown-item' href='view-ad.php?adid=" . $row['adid'] . "&userid=" . $row['userid'] . "&review=yes'><i class='fa fa-thumbs-up'> Approve</i></a>
                               <a class='dropdown-item' href='view-ad.php?adid=" . $row['adid'] . "&userid=" . $row['userid'] . "&review=yes'><i class='fa fa-thumbs-down'> Decline</i></a>
-                          <a class='dropdown-item' href='../post-ad.php?editAdId=".$row['adid']."&userId=".$row['userid']."&updateByAdmin'><i class='fa fa-refresh'> Update</i></a>
+                          <a class='dropdown-item' href='../post-ad.php?editAdId=" . $row['adid'] . "&userId=" . $row['userid'] . "&updateByAdmin'><i class='fa fa-refresh'> Update</i></a>
                           <a class='dropdown-item' href='#'><i class='fa fa-remove'> Delete</i></a>
                           
                         </div>
