@@ -92,7 +92,7 @@ if (isset($_SESSION['username'])) {
               </div>";
         } else if (isset($_GET['PostAnAd']) || isset ($_GET['AdminLoginFirst'])) {
             echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' role='alert'>
-                <strong>Login Required!</strong> Log in to your account to post an Ad.
+                <strong>Login Required!</strong> Log in to your account to access profile.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                 </button>
