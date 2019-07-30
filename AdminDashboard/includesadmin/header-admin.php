@@ -30,10 +30,10 @@ if (isset($_SESSION['username']) || isset($_SESSION['userid'])) {
 
     if ($resultCheck2 < 1) {
         echo "no results";
-    } else {
+    } else {        echo 'hi';
         while ($row = mysqli_fetch_assoc($result2)) {
             if ($row['isBanned'] == "yes") {
-                header("Location: ./users.php?isBanned=yes");
+//                header("Location: ./users.php?isBanned=yes");
                 exit();
             } 
         }
