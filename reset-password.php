@@ -5,7 +5,7 @@ if (session_status() == PHP_SESSION_NONE) {
         header("Location: index.php");
         echo 'hi';
     }
-}
+} 
 ?>
 
 <!doctype html>
