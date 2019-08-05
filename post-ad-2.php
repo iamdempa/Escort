@@ -530,7 +530,7 @@ and open the template in the editor.
                 <div class = 'col-md-4 col-sm-4 col-4'></div>
                 <div class = 'col-md-4 col-sm-4 col-4'>
                 <div style = 'margin-top: 1em;'>
-                <button type = 'submit' form = 'form1' name = 'submit' class = 'btn btn-success btn-lg btn-block'><i class = 'fa fa-rocket'></i> Update and Publish</button>
+                <button type = 'submit' form = 'form1' name = 'submit' class = 'btn btn-success btn-lg'><i class = 'fa fa-rocket'></i> Update and Publish</button>
                 </div>
                 </div>
                 <div class = 'col-md-4 col-sm-4 col-4'></div>
