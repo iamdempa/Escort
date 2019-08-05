@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
     $state = mysqli_real_escape_string($conn, $_POST['state']);
     $country = mysqli_real_escape_string($conn, $_POST['country']);
 
-    if ($_SESSION['editAdId']) {
+    if (isset($_SESSION['editAdId'])) {
         $adId = $_SESSION['editAdId'];
     } else {
         $adId = $_SESSION['adid'];
