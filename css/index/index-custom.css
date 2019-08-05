@@ -10,7 +10,7 @@ and open the template in the editor.
 
 
 .navigation-bar,.btn-primary {
-    background: #007BB8 !important; /*blue color*/
+    background: #007BB8 !important; /*blue color*/    
 }
 
 
@@ -146,15 +146,10 @@ and open the template in the editor.
 
 @media (max-width: 910px) and (min-width: 768px){
     .hide-me-when-screen-is-below-910{
-        display: none !important;
-        border: 2px solid red;
+        display: none !important;        
     }
 }
 
-
-.navbar-nav{
-    display: none !important;
-}
 
 
 .jumbotron {
