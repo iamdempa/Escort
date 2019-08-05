@@ -56,26 +56,26 @@ if (!mysqli_stmt_prepare($stmt, $sqlPartOne)) {
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios" id="radio1" value="1" class="input-hidden" />
                                             <label for="radio1">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>
 
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios" id="radio2" value="2" class="input-hidden" />
                                             <label for="radio2">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios" id="radio3" value="3" class="input-hidden" />
                                             <label for="radio3">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios" id="radio4" value="4" class="input-hidden" />
                                             <label for="radio4">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>                                       
 
@@ -87,25 +87,25 @@ if (!mysqli_stmt_prepare($stmt, $sqlPartOne)) {
                                             <input 
                                                 type="radio" disabled name="radios" id="radio5" value="5" class="input-hidden" />
                                             <label for="radio5">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios" id="radio6" value="6" class="input-hidden" />
                                             <label for="radio6">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios" id="radio7" value="7" class="input-hidden" />
                                             <label for="radio7">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>
                                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                                             <input type="radio" disabled name="radios"  id="radio8" value="8" class="input-hidden" />
                                             <label for="radio8">
-                                                <img src="http://placehold.it/70" alt="I'm radio" />
+                                                <img src="https://placehold.it/70" alt="I'm radio" />
                                             </label>
                                         </div>                                        
                                     </div>

@@ -7,6 +7,14 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
+
+        
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+
+        
+    
+    
         <?php
         if (session_status() == PHP_SESSION_NONE) {
             session_start();

@@ -44,7 +44,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=100, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
         <title>Post an Ad - Escort Personal Adz</title>
@@ -54,10 +54,10 @@ and open the template in the editor.
         <link href="css/ad/ad-service-custom.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
-        <script src="js/main/jquery.js"></script>
+        <script src="js/main/jquery.js"></script> 
 
-
-    </style>
+	<style>body { min-width: 980px; text-align: center; background: red; }</style>
+	  
 
 </head>
 
@@ -244,26 +244,26 @@ and open the template in the editor.
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios' id='radio1' value='1' class='input-hidden' />
                                                         <label for='radio1'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>
 
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios' id='radio2' value='2' class='input-hidden' />
                                                         <label for='radio2'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios' id='radio3' value='3' class='input-hidden' />
                                                         <label for='radio3'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios' id='radio4' value='4' class='input-hidden' />
                                                         <label for='radio4'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>                                       
 
@@ -275,25 +275,25 @@ and open the template in the editor.
                                                         <input 
                                                             type='radio' name='radios' id='radio5' value='5' class='input-hidden' />
                                                         <label for='radio5'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios' id='radio6' value='6' class='input-hidden' />
                                                         <label for='radio6'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios' id='radio7' value='7' class='input-hidden' />
                                                         <label for='radio7'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>
                                                     <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                         <input type='radio' name='radios'  id='radio8' value='8' class='input-hidden' />
                                                         <label for='radio8'>
-                                                            <img src='http://placehold.it/70' alt='I'm radio' />
+                                                            <img src='https://placehold.it/70' alt='I'm radio' />
                                                         </label>
                                                     </div>                                        
                                                 </div>
@@ -311,22 +311,22 @@ and open the template in the editor.
                                                     <div class='row'>
                                                         <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                             <label for='file1'>
-                                                                <img id='blah1' src='http://placehold.it/100' alt='...' class='img-thumbnail'>
+                                                                <img id='blah1' src='https://placehold.it/100' alt='...' class='img-thumbnail'>
                                                             </label>
                                                         </div>
                                                         <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                             <label for='file2'>
-                                                                <img id='blah2' src='http://placehold.it/100' alt='...' class='img-thumbnail'>
+                                                                <img id='blah2' src='https://placehold.it/100' alt='...' class='img-thumbnail'>
                                                             </label>
                                                         </div>
                                                         <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                             <label for='file3'>
-                                                                <img id='blah3' src='http://placehold.it/100' alt='...' class='img-thumbnail'>
+                                                                <img id='blah3' src='https://placehold.it/100' alt='...' class='img-thumbnail'>
                                                             </label>
                                                         </div>
                                                         <div class='col-md-3 col-sm-6 col-6 ad-image'>
                                                             <label for='file4'>
-                                                                <img id='blah4' src='http://placehold.it/100' alt='...' class='img-thumbnail'>
+                                                                <img id='blah4' src='https://placehold.it/100' alt='...' class='img-thumbnail'>
                                                             </label>
 
                                                         </div>
@@ -419,26 +419,26 @@ and open the template in the editor.
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios" id="radio1" value="1" class="input-hidden" />
                                                     <label for="radio1">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>
 
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios" id="radio2" value="2" class="input-hidden" />
                                                     <label for="radio2">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios" id="radio3" value="3" class="input-hidden" />
                                                     <label for="radio3">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios" id="radio4" value="4" class="input-hidden" />
                                                     <label for="radio4">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>                                       
 
@@ -450,25 +450,25 @@ and open the template in the editor.
                                                     <input 
                                                         type="radio" name="radios" id="radio5" value="5" class="input-hidden" />
                                                     <label for="radio5">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios" id="radio6" value="6" class="input-hidden" />
                                                     <label for="radio6">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios" id="radio7" value="7" class="input-hidden" />
                                                     <label for="radio7">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>
                                                 <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                     <input type="radio" name="radios"  id="radio8" value="8" class="input-hidden" />
                                                     <label for="radio8">
-                                                        <img src="http://placehold.it/70" alt="I'm radio" />
+                                                        <img src="https://placehold.it/70" alt="I'm radio" />
                                                     </label>
                                                 </div>                                        
                                             </div>
@@ -500,22 +500,22 @@ and open the template in the editor.
                                                 <div class="row">
                                                     <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                         <label for="file1">
-                                                            <img id="blah1" src="http://placehold.it/100" alt="..." class="img-thumbnail">
+                                                            <img id="blah1" src="https://placehold.it/100" alt="..." class="img-thumbnail">
                                                         </label>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                         <label for="file2">
-                                                            <img id="blah2" src="http://placehold.it/100" alt="..." class="img-thumbnail">
+                                                            <img id="blah2" src="https://placehold.it/100" alt="..." class="img-thumbnail">
                                                         </label>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                         <label for="file3">
-                                                            <img id="blah3" src="http://placehold.it/100" alt="..." class="img-thumbnail">
+                                                            <img id="blah3" src="https://placehold.it/100" alt="..." class="img-thumbnail">
                                                         </label>
                                                     </div>
                                                     <div class="col-md-3 col-sm-6 col-6 ad-image">
                                                         <label for="file4">
-                                                            <img id="blah4" src="http://placehold.it/100" alt="..." class="img-thumbnail">
+                                                            <img id="blah4" src="https://placehold.it/100" alt="..." class="img-thumbnail">
                                                         </label>
 
                                                     </div>

@@ -46,7 +46,7 @@
         <!--<link href="css/main/font-awesome.min.css" rel="stylesheet">-->
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
         <link href="css/searchpage/custom.css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <link href="css/index/index-custom.css" rel="stylesheet">
 
 
@@ -392,7 +392,7 @@
                             echo "</tr>";
                         } else { //ad pic not set
                             echo "<td class='text-right'>";
-                            echo "<img src='http://placehold.it/500' style='width:150px;height:150px;' class='rounded float-right'>";
+                            echo "<img src='https://placehold.it/500' style='width:150px;height:150px;' class='rounded float-right'>";
                             echo"</td>";
 
                             echo "<td class='text-left' style='width:100%;'>";
@@ -571,7 +571,7 @@ include_once './includes/footer.php';
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="js/main/holder.min.js"></script>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
         <!--Back to top-->
         <script type="text/javascript">

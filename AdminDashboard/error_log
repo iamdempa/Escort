@@ -1,0 +1,14 @@
+[30-Jul-2019 21:27:04 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:27:10 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:27:26 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:27:41 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:27:55 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:28:06 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:28:12 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:28:16 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:28:21 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/view-user.php on line 50
+[30-Jul-2019 21:28:32 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/includesadmin/ad-inc.php on line 16
+[30-Jul-2019 21:29:13 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/includesadmin/ad-inc.php on line 16
+[30-Jul-2019 21:29:26 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/includesadmin/ad-inc.php on line 16
+[31-Jul-2019 06:16:51 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/includesadmin/ad-inc.php on line 16
+[31-Jul-2019 06:42:18 Europe/London] PHP Fatal error:  Call to undefined function mysqli_stmt_get_result() in /home/escortpe/public_html/AdminDashboard/includesadmin/ad-inc.php on line 16

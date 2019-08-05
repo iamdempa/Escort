@@ -40,7 +40,7 @@
                     //show default image
 //                            echo "<img src='uploads/profiledefault.jpg'>";
                     echo "<label for='file'>
-                                <img id='blah' src='http://placehold.it/100' style='cursor: pointer;width:150px;height:150px;'
+                                <img id='blah' src='https://placehold.it/100' style='cursor: pointer;width:150px;height:150px;'
                             class='mx-auto img-fluid img-circle d-block img-thumbnail rounded-circle' alt='avatar'>
                             
                             </label>";
@@ -190,7 +190,7 @@
                             echo "</tr>";
                         } else { //profile pic not set
                             echo "<td>";
-                            echo "<img src='http://placehold.it/500' style='width:50px;height:50px;' class='rounded float-left'>";
+                            echo "<img src='https://placehold.it/500' style='width:50px;height:50px;' class='rounded float-left'>";
                             echo"</td>";
 
                             echo "<td class='text-left'>";

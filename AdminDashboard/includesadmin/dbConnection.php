@@ -1,15 +1,15 @@
 <?php
 
 $dbServerName = "localhost";
-$dbUserName = "root";
-$dbPassword = "";
-$dbName = "escort";
+$dbUserName = "escortpe_localhost";
+$dbPassword = "Escort@1995";
+$dbName = "escortpe_escort";
 
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 
 if(!$conn){
     echo 'Failed to connect';
 } else {
-//    echo 'Success';
+//==    echo 'Success';
 }
 

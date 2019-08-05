@@ -95,7 +95,7 @@
 
                             <div class="col-12 col-md-3 col-sm-6">
                                 <figure class="imghvr-fold-up">
-                                    <img src="http://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
+                                    <img src="https://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
                                     <figcaption>                                       
                                     </figcaption>
                                     <a href="#"></a>
@@ -109,7 +109,7 @@
 
                             <div class="col-12 col-md-3 col-sm-6">
                                 <figure class="imghvr-fold-up">
-                                    <img src="http://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
+                                    <img src="https://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
                                     <figcaption>                                       
                                     </figcaption>
                                     <a href="#"></a>
@@ -123,7 +123,7 @@
 
                             <div class="col-12 col-md-3 col-sm-6">
                                 <figure class="imghvr-fold-up">
-                                    <img src="http://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
+                                    <img src="https://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
                                     <figcaption>                                       
                                     </figcaption>
                                     <a href="#"></a>
@@ -137,7 +137,7 @@
 
                             <div class="col-12 col-md-3 col-sm-6">
                                 <figure class="imghvr-fold-up">
-                                    <img src="http://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
+                                    <img src="https://placehold.jp/150x150.png" class="img-fluid img-thumbnail" alt="Responsive image">
                                     <figcaption>                                       
                                     </figcaption>
                                     <a href="#"></a>
@@ -302,7 +302,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -312,7 +312,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -322,7 +322,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -332,7 +332,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -342,7 +342,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -361,7 +361,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -371,7 +371,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -381,7 +381,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -391,7 +391,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
@@ -401,7 +401,7 @@
                         </div>
                         <div class="col-md-2 col-sm-2 col-6">
 
-                            <img src="http://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
+                            <img src="https://placehold.jp/150x150.png" class="img-fluid" alt="Responsive image">
 
                             <div class="card" style="width: auto">
                                 <div class="card-body">
