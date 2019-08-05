@@ -1,5 +1,5 @@
 .filterbar > div > ul > li{
-   
+
 }
 
 .countryname{
@@ -10,4 +10,12 @@
 }
 tr:hover{
     cursor: pointer;    
+}
+
+
+@media (max-width: 768px){
+    .hide-me-when-screen-is-below-768{
+        display: none;
+        /*border: 1px solid red;*/
+    }
 }

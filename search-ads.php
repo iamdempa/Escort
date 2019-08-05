@@ -2,7 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--<meta content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
+        <meta name="viewport" content="width=900, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -71,7 +72,7 @@
 
                                     <li class="nav-item px-5">                                    
 
-                                        <div class="form-group row country">
+                                        <div class="form-group row country hide-me-when-screen-is-below-768">
                                             <label for="country" class="col-form-label"><i class='fa fa-globe'></i> Search by Country:</label>
                                             <div class="col-sm-10">
                                                 <select id="country" name="country" class="form-control">
@@ -98,7 +99,7 @@
 
                                     <li class="nav-item px-6">                                    
 
-                                        <div class="form-group row service">
+                                        <div class="form-group row service hide-me-when-screen-is-below-768">
                                             <label for="service" class="col-form-label"><i class='fa fa-tasks'></i> Search by Service:</label>
                                             <div class="col-sm-10">
                                                 <select id="service" name="service" class="form-control">
@@ -118,19 +119,18 @@
 
                                     </li>
 
-                                    <li class="nav-item px-6">                                    
-                                        <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
-                                        <div class="col-sm-12">
-                                            <?php
-                                            if ($keyword != "" || strlen($keyword) == 0) {
-                                                echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="' . $keyword . '" value="' . $keyword . '" aria-label="Search">';
-                                            } else {
-                                                echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
-                                            }
-                                            ?>
+                                    <li class="nav-item px-6">                                          
+                                            <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
+                                            <div class="col-sm-12">
+                                                <?php
+                                                if ($keyword != "" || strlen($keyword) == 0) {
+                                                    echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="' . $keyword . '" value="' . $keyword . '" aria-label="Search">';
+                                                } else {
+                                                    echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
+                                                }
+                                                ?>
 
-                                        </div>
-
+                                            </div>                                        
                                     </li>
 
                                     <li class="nav-item px-6">                                    
@@ -278,7 +278,7 @@
                 echo "<div class='container'>
                     <div class='row'>
                         <div class='col-4'>
-                        
+                            
                         </div>";
                 if ($numOfResults2 < 1) { //no result
                     echo "<div class='col-8' style='background: #f0f0f0; border-radius: 10px;margin-bottom:200px;'><h1>No ads found!</h1>";
@@ -519,14 +519,14 @@
 
         </script>
 
-<?php
-if ($country !== "all") {
-    echo "<script type='text/javascript'>checkSelectOption({$country});</script>";
-}
-if ($service !== "all") {
-    echo "<script type='text/javascript'>checkSelectOptionService({$service});</script>";
-}
-?>
+        <?php
+        if ($country !== "all") {
+            echo "<script type='text/javascript'>checkSelectOption({$country});</script>";
+        }
+        if ($service !== "all") {
+            echo "<script type='text/javascript'>checkSelectOptionService({$service});</script>";
+        }
+        ?>
 
 
         <?php
@@ -547,9 +547,9 @@ if ($service !== "all") {
 
         <hr class="style3">
 
-<?php
-include_once './includes/footer.php';
-?>
+        <?php
+        include_once './includes/footer.php';
+        ?>
 
 
 
