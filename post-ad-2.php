@@ -44,7 +44,7 @@ if (isset($_SESSION['admin'])) {
     }else{
 	echo "error";
     }
-    echo "adId is: " . $adId;
+//    echo "adId is: " . $adId;
 ?>
 
 

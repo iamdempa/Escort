@@ -100,7 +100,7 @@ and open the template in the editor.
     }
     .search-button{
         margin-left: 0px !important;
-        margin-top: 5px;
+        margin-top: 5px;        
     }
 }
 
@@ -135,15 +135,20 @@ and open the template in the editor.
 
 }
 
-/*everything below 320*/
+/*when screen size is below 320, do these*/
 @media(max-width:320px){ 
     h5.services,.col-md-2,.col-sm-2,.col-6{
-        font-size:1vw !important;
-        border: 1px solid red;
+        font-size:4vw !important;
+        /*border: 1px solid red;*/
     }
 }
 
 
+@media (max-width: 910px) and (min-width: 768px){
+    .hide-me-when-screen-is-belo-910{
+        display: none;
+    }
+}
 
 .jumbotron {
 
