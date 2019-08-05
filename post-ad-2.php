@@ -4,6 +4,9 @@ include_once './includes/dbConnection.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+//echo "User id is: " . $_SESSION['userid'];
+
 if (!isset($_SESSION['username']) && !isset($_SESSION['adid'])) {
     header("Location: index.php");
 }
@@ -13,22 +16,35 @@ if (isset($_SESSION['admin'])) {
     $userId = $_SESSION['userid'];
 }
 
-if (isset($_GET['updatePartOne']) == "yes" && isset($_GET['newAd']) == "yes") {  //if someone clicked post ad button on the user page to create a new ad
+/*if (isset($_GET['updatePartOne']) == "yes" && isset($_GET['newAd'])) {  //if someone clicked post ad button on the user page to create a new ad
 //    $adId = $_SESSION['editAdId'];
+    
     $adId = $_SESSION['adid'];
-    echo 'ONE';
+    echo 'ONE - ' . $adId;
 } else if (isset($_GET['updatePartOneByAdmin']) || !empty($_GET['updatePartOneByAdmin'])) { //if admin is going to update the ad
     $adId = $_SESSION['editAdId'];
-    echo 'TWO';
+    echo 'TWO - ' . $adId;
 } else if (isset($_GET['updatePartOne']) == "success" && isset($_GET['byUser']) == "yes") { //if user clicked on ad edit button
 //ID's
 
     $adId = $_SESSION['editAdId'];
-    echo 'THREE';
-} else if(isset($_GET['updatePartOne']) == "yes" && isset($_GET['emoerror'])){
-    $adId = $_SESSION['adid'];
-    echo 'Four';
-}
+    echo 'THREE- ' . $adId;
+} else if(isset($_GET['updatePartOne']) == "success" && isset($_GET['emoerror'])) {
+    //$adId = $_SESSION['adid'];
+     $adId = $_SESSION['editAdId'];
+    echo 'Four - ' . $adId;
+}*/
+
+    if (isset($_SESSION['editAdId']) && isset($_SESSION['adid'])) { //if both set, assign anyone of both
+        $adId = $_SESSION['editAdId'];
+    } else if(isset($_SESSION['adid'])) { //only if adid is set
+        $adId = $_SESSION['adid'];
+    }else if(isset($_SESSION['editAdId'])){ //only if editAdId is set
+	$adId = $_SESSION['editAdId'];
+    }else{
+	echo "error";
+    }
+    echo "adId is: " . $adId;
 ?>
 
 
@@ -43,19 +59,16 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>Post an Ad - Escort Personal Adz</title>
+        <title>Post an Ad - Escort Personal Adz</title>                    
 
         <link href="css/user-profile/user-profile-custom.css" rel="stylesheet">
         <link href="css/ad/ad-custom.css" rel="stylesheet">
         <link href="css/ad/ad-service-custom.css" rel="stylesheet">
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
-
-
-
+                        
+     	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
     </head>
 
@@ -92,8 +105,8 @@ and open the template in the editor.
         <!--error message-->
         <?php
         if (isset($_GET['emoerror'])) {
-            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert'>
-                <strong>Fill contact details!</strong>
+            echo "<div class='alert mekata alert-danger alert-dismissible fade show text-center' id='success-alert' role='alert' style='margin-top:0px'>
+                <strong>Fill contact details!</strong> Fill at least one method of contact.
                 <button type='button' class='close' data-dismiss='alert' aria-label='Close'>
                   <span aria-hidden='true'>&times;</span>
                 </button>
@@ -103,9 +116,10 @@ and open the template in the editor.
 
         <script type="text/javascript">
             window.setTimeout(function () {
-                $(".mekata").fadeTo(2500, 0).slideUp(1000, function () {
-                    $(this).hide();
-                });
+                // $(".mekata").fadeTo(2500, 0).slideUp(1000, function () {
+                //     $(this).hide();
+                // });
+                $(".mekata").show();
             }, 1000);
         </script>
 
@@ -318,7 +332,7 @@ and open the template in the editor.
                 function showImages(imgName, src) {
 //                    alert(imgName);
                     var elem = $('#' + imgName);
-                    if (elem.src !== "http://placehold.it/500") {
+                    if (elem.src !== "https://placehold.it/500") {
                         $("#" + imgName).attr("src", src);
                     } else {
 
@@ -339,7 +353,7 @@ and open the template in the editor.
 
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file1">
-                                <img id="blah1" src="http://placehold.it/500" alt="..." class="img-thumbnail">
+                                <img id="blah1" src="https://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-1"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold">This will be the Thumbnail</small>
 
@@ -358,7 +372,7 @@ and open the template in the editor.
 
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file2">
-                                <img id="blah2" src="http://placehold.it/500" alt="..." class="img-thumbnail">
+                                <img id="blah2" src="https://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-2"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold"></small>
 
@@ -376,7 +390,7 @@ and open the template in the editor.
 
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file3">
-                                <img id="blah3" src="http://placehold.it/500" alt="..." class="img-thumbnail">
+                                <img id="blah3" src="https://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-3"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold"></small>
 
@@ -394,7 +408,7 @@ and open the template in the editor.
 
                         <div class="col-md-3 col-sm-6 col-6 ad-image">
                             <label for="file4">
-                                <img id="blah4" src="http://placehold.it/500" alt="..." class="img-thumbnail">
+                                <img id="blah4" src="https://placehold.it/500" alt="..." class="img-thumbnail">
                                 <button type="button" value="Remove Photo" style="margin-top: 5px;" class="btn btn-danger btn-sm" id="image-remove-btn-4"><i class="fa fa-trash"></i> Remove Photo</button>
                                 <small id="textCount" class="form-text text-center bold"></small>
 
@@ -540,14 +554,14 @@ and open the template in the editor.
 
         <script type="text/javascript">
             $(document).ready(function () {
-//                alert("Hi");
+                
                 var images = ["blah1", "blah2", "blah3", "blah4"];
                 var buttons = ["image-remove-btn-1", "image-remove-btn-2", "image-remove-btn-3", "image-remove-btn-4"];
                 var i;
                 for (i = 0; i < images.length; i++) {
                     var elem = $('#' + images[i]);
                     var btnElem = $('#' + buttons[i]);
-                    if (elem.attr('src') !== "http://placehold.it/500") {
+                    if (elem.attr('src') !== "https://placehold.it/500") {
                         btnElem.show();
 //                        alert("show remove buttons");
                     } else {
@@ -555,6 +569,15 @@ and open the template in the editor.
                     }
                 }
             });
+        </script>
+        
+        <script>
+            
+            $(document).ready(function () {
+                
+                // alert();
+            });
+            
         </script>
 
         <script>
@@ -627,7 +650,7 @@ and open the template in the editor.
 
             $("#image-remove-btn-1").click(function (event) {
                 $("#image-remove-btn-1").html("<i class='fa fa-trash'></i> Photo deleting...");
-                $('#blah1').attr('src', 'http://placehold.it/500');
+                $('#blah1').attr('src', 'https://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
                 deletePhoto('blah1', userId, adId);
@@ -641,7 +664,7 @@ and open the template in the editor.
             $("#image-remove-btn-2").click(function () {
                 $("#image-remove-btn-2").html("<i class='fa fa-trash'></i> Photo deleting...");
 
-                $('#blah2').attr('src', 'http://placehold.it/500');
+                $('#blah2').attr('src', 'https://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
                 deletePhoto('blah2', userId, adId);
@@ -654,7 +677,7 @@ and open the template in the editor.
 
             $("#image-remove-btn-3").click(function () {
                 $("#image-remove-btn-3").html("<i class='fa fa-trash'></i> Photo deleting...");
-                $('#blah3').attr('src', 'http://placehold.it/500');
+                $('#blah3').attr('src', 'https://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
                 deletePhoto('blah3', userId, adId);
@@ -668,7 +691,7 @@ and open the template in the editor.
             $("#image-remove-btn-4").click(function () {
                 $("#image-remove-btn-4").html("<i class='fa fa-trash'></i> Photo deleting...");
 
-                $('#blah4').attr('src', 'http://placehold.it/500');
+                $('#blah4').attr('src', 'https://placehold.it/500');
                 var userId =<?php echo $userId ?>;
                 var adId =<?php echo $adId ?>;
                 deletePhoto('blah4', userId, adId);
@@ -888,21 +911,21 @@ and open the template in the editor.
         </script>
 
 
-
-
-
-        <!-- Bootstrap core JavaScript
-        ==================================================                                                                                                                         -->
+                                                                                                                       
         <!-- Placed at the end of the document so the pages load faster -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        
         <script>window.jQuery || document.write('<script src="js/main/jquery-slim.min.js"><\/script>')</script>
+        
         <script src="js/main/popper.min.js"></script>
         <script src="js/main/bootstrap.js"></script>
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
         <script src="js/main/holder.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        
 
 
     </body>
