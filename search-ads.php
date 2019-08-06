@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <!--<meta content="width=device-width, initial-scale=1, shrink-to-fit=no">-->
-        <meta name="viewport" content="width=900, initial-scale=1, shrink-to-fit=no">
+        <meta content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!--<meta name="viewport" content="width=370, initial-scale=1, shrink-to-fit=no">-->
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -37,6 +37,10 @@
         }
         ?>
 
+        <style type="text/css">
+
+        </style>
+
 
         <!-- Bootstrap core CSS -->
         <link href="css/main/bootstrap.css" rel="stylesheet"> 
@@ -60,14 +64,17 @@
         ?>
         <br>
 
-        <div class="container" style="background: #ffffff; border-radius: 10px">
-            <div class="row text-center">
-                <div class="col-12 col-md-12">
 
-                    <nav class="navbar navbar-expand-lg navbar-expand navbar-light  filterbar">
+        <form action="includes/search-ads-filter-inc.php" method="POST">
+            <div class="container" style="background: #ffffff; border-radius: 10px">
+                <div class="row text-center">
+                    <div class="col-12 col-md-12">
 
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <form action="includes/search-ads-filter-inc.php" method="POST">
+                        <nav class="navbar navbar-expand-lg navbar-expand navbar-light filterbar">
+
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+
                                 <ul class="navbar-nav mr-auto">
 
                                     <li class="nav-item px-5">                                    
@@ -120,17 +127,17 @@
                                     </li>
 
                                     <li class="nav-item px-6">                                          
-                                            <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
-                                            <div class="col-sm-12">
-                                                <?php
-                                                if ($keyword != "" || strlen($keyword) == 0) {
-                                                    echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="' . $keyword . '" value="' . $keyword . '" aria-label="Search">';
-                                                } else {
-                                                    echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
-                                                }
-                                                ?>
+                                        <label for="country" class="col-form-label"><i class='fa fa-flagy'></i>  </label>
+                                        <div class="col-sm-12">
+                                            <?php
+                                            if ($keyword != "" || strlen($keyword) == 0) {
+                                                echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="' . $keyword . '" value="' . $keyword . '" aria-label="Search">';
+                                            } else {
+                                                echo '<input class="form-control mr-sm-2" name="keyword" type="text" placeholder="Search Ads" aria-label="Search">';
+                                            }
+                                            ?>
 
-                                            </div>                                        
+                                        </div>                                        
                                     </li>
 
                                     <li class="nav-item px-6">                                    
@@ -141,13 +148,14 @@
 
                                     </li>
                                 </ul>
-                            </form> 
-                        </div>
-                    </nav>
 
+                            </div>
+                        </nav>
+
+                    </div>
                 </div>
             </div>
-        </div>
+        </form> 
 
         <br><br><br>
 
@@ -281,16 +289,16 @@
                             
                         </div>";
                 if ($numOfResults2 < 1) { //no result
-                    echo "<div class='col-8' style='background: #f0f0f0; border-radius: 10px;margin-bottom:200px;'><h1>No ads found!</h1>";
+                    echo "<div class='col-8 ' style='background: #f0f0f0; border-radius: 10px;margin-bottom:200px;'><h1>No ads found!</h1>";
                 } else { //has a result
-                    echo "<div class='col-8' style='background: #ffffff; border-radius: 10px;margin-bottom:200px;'>";
+                    echo "<div class='col-8 ' style='background: #ffffff;border-radius: 10px;margin-bottom:200px;display:block;text-overflow:ellipsis; width:auto; overflow:hidden; white-space: nowrap;' >";
                 }
 
 
                 echo "<table class='table'>                    
                     <tbody>";
                 while ($row = mysqli_fetch_assoc($result)) {
-                    echo "<tr>";
+                    echo "<tr >";
                     $adId = $row['adid'];
 //                    $sql2 = "SELECT * FROM adimage WHERE adid='$adId' AND userid='$userIdd' LIMIT 1;";
                     $sql2 = "SELECT * FROM adimage WHERE adid='$adId' LIMIT 1;";
@@ -309,7 +317,7 @@
                             echo "<img src='uploads/ad/adImage-" . $rowImage['adimageid'] . "-" . $rowImage['adid'] . "-" . $rowImage['userid'] . "." . $fileActualExt . "?" . mt_rand() . "' style='width:150px;height:150px;' class='rounded float-right'>";
                             echo"</td>";
 
-                            echo "<td class='text-left' style='width:100%;'>";
+                            echo "<td class='text-left' >";
 
                             echo "<h3>";
                             echo "<a class='card-link' href='view-ad.php?editAdId=" . $rowImage['adid'] . "'>";
@@ -317,9 +325,11 @@
                             echo "</a>";
                             echo "</h3>";
 
+
                             echo "<h6 style='color:#9E9A9A;display:block;text-overflow:ellipsis; width:500px; overflow:hidden; white-space: nowrap;'>";
                             echo $row['addescription'];
                             echo "</h6>";
+
 
                             echo '<br>';
 

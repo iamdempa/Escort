@@ -54,19 +54,19 @@ if (session_status() == PHP_SESSION_NONE) {
 
             <ul class="navbar-nav mr-auto">
 
-                <li class="nav-item active hide-me-when-screen-is-belo-910">
+                <li class="nav-item active hide-me-when-screen-is-below-910">
 
                     <a class="nav-link" href="../index.php"><i class='fa fa-home'>  <span class="sr-only">(current)</i></span> Home</a>
 
                 </li>
 
-                <li class="nav-item hide-me-when-screen-is-belo-910">
+                <li class="nav-item hide-me-when-screen-is-below-910">
 
                     <a class="nav-link" href="#"><i class='fa fa-user'> </i> About us</a>
 
                 </li>
 
-                <li class="nav-item hide-me-when-screen-is-belo-910">
+                <li class="nav-item hide-me-when-screen-is-below-910">
 
                     <a class="nav-link" href="#"><i class='fa fa-phone'> </i> Contact us</a> 
 
