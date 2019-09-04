@@ -53,8 +53,9 @@ and open the template in the editor.
         <link href="css/ad/ad-custom.css" rel="stylesheet">
         <link href="css/ad/ad-service-custom.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <script src="js/main/jquery.js"></script> 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
+        
 
 	<style>body { min-width: 980px; text-align: center; background: red; }</style>
 	  
