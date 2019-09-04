@@ -2,7 +2,7 @@
 
 $dbServerName = "localhost";
 $dbUserName = "root";
-$dbPassword = "";
+$dbPassword = "root123";
 $dbName = "escort";
 
 $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
@@ -10,6 +10,6 @@ $conn = mysqli_connect($dbServerName, $dbUserName, $dbPassword, $dbName);
 if(!$conn){
     echo 'Failed to connect';
 } else {
-//==    echo 'Success';
+//    echo 'Success';
 }
 
